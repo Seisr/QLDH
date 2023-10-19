@@ -38,9 +38,9 @@ public class LoginView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         txtAccount = new javax.swing.JTextField();
-        checkShow = new javax.swing.JCheckBox();
         pasPass = new javax.swing.JPasswordField();
         btnRegister = new javax.swing.JButton();
+        checkShow = new javax.swing.JCheckBox();
         lblWall = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,15 +66,6 @@ public class LoginView extends javax.swing.JFrame {
         });
         getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 110, -1));
         getContentPane().add(txtAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 100, 30));
-
-        checkShow.setForeground(new java.awt.Color(255, 255, 255));
-        checkShow.setText("Hiện mật khẩu");
-        checkShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkShowActionPerformed(evt);
-            }
-        });
-        getContentPane().add(checkShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, 10));
         getContentPane().add(pasPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 100, 30));
 
         btnRegister.setText("Đăng ký");
@@ -84,6 +75,17 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 110, -1));
+
+        checkShow.setForeground(new java.awt.Color(255, 255, 255));
+        checkShow.setText("Hiện mật khẩu");
+        checkShow.setContentAreaFilled(false);
+        checkShow.setFocusPainted(false);
+        checkShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkShowActionPerformed(evt);
+            }
+        });
+        getContentPane().add(checkShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
 
         lblWall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/8.jpg"))); // NOI18N
         getContentPane().add(lblWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -620, 1090, 1680));
@@ -121,9 +123,9 @@ public class LoginView extends javax.swing.JFrame {
 
     private void checkShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkShowActionPerformed
         // TODO add your handling code here:
-        if (checkShow.isSelected() == true) {
-            pasPass.setEchoChar((char) 0);
-        } else {
+        if(checkShow.isSelected() == true){
+            pasPass.setEchoChar((char)0);
+        }else{
             pasPass.setEchoChar('*');
         }
     }//GEN-LAST:event_checkShowActionPerformed
