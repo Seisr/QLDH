@@ -4,7 +4,7 @@
  */
 package view;
 
-import bar.Bar;
+import model.Bar;
 import controller.BarController;
 import java.util.ArrayList;
 
