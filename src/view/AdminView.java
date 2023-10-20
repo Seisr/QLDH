@@ -25,12 +25,12 @@ public class AdminView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Màn hình chính");
         BarController barCon = new BarController(jpnView);
-        barCon.setView(jpnSanPham, jlbSanPham);
+        barCon.setView("SanPhamAdmin", jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();
         listItem.add(new Bar("SanPham", jpnSanPham, jlbSanPham));
         listItem.add(new Bar("GioHang", jpnGioHang, jlbGioHang));
         listItem.add(new Bar("DonHang", jpnDonHang, jlbDonHang));
-        listItem.add(new Bar("KhachHang",jpnKhachHang,jLabel2));
+        listItem.add(new Bar("KhachHang", jpnKhachHang, jLabel2));
 
         barCon.setEvent(listItem);
     }
@@ -183,7 +183,6 @@ public class AdminView extends javax.swing.JFrame {
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/log-out244.jpg"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnExit.setMaximumSize(new java.awt.Dimension(30, 31));
-        btnExit.setOpaque(false);
         btnExit.setPreferredSize(new java.awt.Dimension(27, 27));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

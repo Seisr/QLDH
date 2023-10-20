@@ -45,6 +45,7 @@ public class LoginView extends javax.swing.JFrame {
         pasPass = new javax.swing.JPasswordField();
         btnRegister = new javax.swing.JButton();
         checkShow = new javax.swing.JCheckBox();
+        btnLoginAsGuest = new javax.swing.JButton();
         lblWall = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,6 +93,14 @@ public class LoginView extends javax.swing.JFrame {
         });
         getContentPane().add(checkShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
 
+        btnLoginAsGuest.setText("Đăng nhập với tư cách khách mời");
+        btnLoginAsGuest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginAsGuestActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLoginAsGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 370, -1, -1));
+
         lblWall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/8.jpg"))); // NOI18N
         getContentPane().add(lblWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -620, 1090, 1680));
 
@@ -135,6 +144,13 @@ public class LoginView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkShowActionPerformed
 
+    private void btnLoginAsGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginAsGuestActionPerformed
+        // TODO add your handling code here:
+        GuestView g = new GuestView();
+        g.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnLoginAsGuestActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -172,6 +188,7 @@ public class LoginView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLoginAsGuest;
     private javax.swing.JButton btnRegister;
     private javax.swing.JCheckBox checkShow;
     private javax.swing.JLabel jLabel1;

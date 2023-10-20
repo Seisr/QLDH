@@ -15,7 +15,9 @@ import javax.swing.JPanel;
 import view.DonHangView;
 import view.GioHangView;
 import view.KhachHangView;
-import view.SanPhamView;
+import view.SanPhamAdminView;
+import view.SanPhamGuestView;
+import view.SanPhamUserView;
 
 /**
  *
@@ -24,6 +26,8 @@ import view.SanPhamView;
 public class BarController {
 
     private JPanel root;
+    private JPanel nodeS;
+
     private String typeS = "";
 
     private ArrayList<Bar> listItem = null;
@@ -32,13 +36,33 @@ public class BarController {
         this.root = jpnRoot;
     }
 
-    public void setView(JPanel jpnI, JLabel jlbI) {
-        typeS = "SanPham";
+    public void setView(String tp, JPanel jpnI, JLabel jlbI) {
+        typeS = tp;
 //        jpnI.setBackground(new Color(96, 100, 191));
 //        jlbI.setBackground(new Color(96, 100, 191));
         root.removeAll(); // ???
         root.setLayout(new BorderLayout()); // ????
-        root.add(new SanPhamView()); // ???
+        switch (tp) {
+            case "SanPhamAdmin":
+                nodeS = new SanPhamAdminView();
+                break;
+            case "SanPhamUser":
+                nodeS = new SanPhamUserView();
+                break;
+            case "SanPhamGuest":
+                nodeS = new SanPhamGuestView();
+                break;
+            case "GioHang":
+                nodeS = new GioHangView();
+                break;
+            case "DonHang":
+                nodeS = new DonHangView();
+                break;
+            case "KhachHang":
+                nodeS = new KhachHangView();
+                break;
+        }
+        root.add(nodeS); // ???
         root.validate(); // ???
         root.repaint(); // ???
     }
@@ -68,8 +92,14 @@ public class BarController {
         @Override
         public void mouseClicked(MouseEvent e) {
             switch (type) {
-                case "SanPham":
-                    node = new SanPhamView();
+                case "SanPhamAdmin":
+                    node = new SanPhamAdminView();
+                    break;
+                case "SanPhamUser":
+                    node = new SanPhamUserView();
+                    break;
+                case "SanPhamGuest":
+                    node = new SanPhamGuestView();
                     break;
                 case "GioHang":
                     node = new GioHangView();
@@ -81,7 +111,7 @@ public class BarController {
                     node = new KhachHangView();
                     break;
                 default:
-                    node = new SanPhamView();
+                    node = new SanPhamAdminView();
                     break;
             }
             root.removeAll();

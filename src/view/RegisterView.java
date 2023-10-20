@@ -4,7 +4,12 @@
  */
 package view;
 
+import dao.KhachHangDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.KhachHang;
 
 /**
  *
@@ -34,15 +39,21 @@ public class RegisterView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jTextField2 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        pasPass = new javax.swing.JPasswordField();
+        pasCPass = new javax.swing.JPasswordField();
+        txtAcc = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jlbAcc = new javax.swing.JLabel();
+        jlbEmail = new javax.swing.JLabel();
+        jlbPass = new javax.swing.JLabel();
+        jlbCPass = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jlbName = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        jlbPhone = new javax.swing.JLabel();
         anhNen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,15 +66,15 @@ public class RegisterView extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Mật khẩu");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 60, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 60, 30));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Xác nhận mật khẩu");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 120, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 120, 30));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Tên đăng nhập");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 90, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 90, 20));
 
         btnRegister.setText("Đăng ký");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -71,23 +82,23 @@ public class RegisterView extends javax.swing.JFrame {
                 btnRegisterActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 380, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 140, -1));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 140, -1));
+        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 140, -1));
+        getContentPane().add(pasPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 140, -1));
 
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        pasCPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                pasCPassActionPerformed(evt);
             }
         });
-        getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 140, -1));
+        getContentPane().add(pasCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 140, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtAcc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtAccActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 140, -1));
+        getContentPane().add(txtAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 140, -1));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nBack3.jpg"))); // NOI18N
         btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -101,21 +112,39 @@ public class RegisterView extends javax.swing.JFrame {
         });
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("123");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
+        jlbAcc.setForeground(new java.awt.Color(255, 255, 255));
+        jlbAcc.setText("123");
+        getContentPane().add(jlbAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
+        jlbEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jlbEmail.setText("jLabel1");
+        getContentPane().add(jlbEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, -1, -1));
+        jlbPass.setForeground(new java.awt.Color(255, 255, 255));
+        jlbPass.setText("jLabel8");
+        getContentPane().add(jlbPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, -1, -1));
+        jlbCPass.setForeground(new java.awt.Color(255, 255, 255));
+        jlbCPass.setText("jLabel6");
+        getContentPane().add(jlbCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Họ tên");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, -1, -1));
+
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Số điện thoại");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
+
+        jlbName.setForeground(new java.awt.Color(255, 255, 255));
+        jlbName.setText("jLabel12");
+        getContentPane().add(jlbName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 140, -1));
+        getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 140, -1));
+
+        jlbPhone.setForeground(new java.awt.Color(255, 255, 255));
+        jlbPhone.setText("jLabel11");
+        getContentPane().add(jlbPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
 
         anhNen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/register.jpg"))); // NOI18N
         anhNen.setToolTipText("");
@@ -131,20 +160,34 @@ public class RegisterView extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtAccActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void pasCPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasCPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_pasCPassActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-        LoginView l = new LoginView();
-        l.setVisible(true);
-        setVisible(false);
+        String hoTen = txtName.getText();
+        String tenDN = txtAcc.getText();
+        String matKhau = pasPass.getText();
+        String vaiTro = "User";
+        String soDT = txtPhone.getText();
+        String email = txtEmail.getText();
+        KhachHang kh = new KhachHang(hoTen, tenDN, matKhau, vaiTro, soDT, email);
+        try {
+            KhachHangDAO.insert(kh);
+            JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
+            LoginView l = new LoginView();
+            l.setVisible(true);
+            setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
@@ -186,17 +229,23 @@ public class RegisterView extends javax.swing.JFrame {
     private javax.swing.JLabel anhNen;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jlbAcc;
+    private javax.swing.JLabel jlbCPass;
+    private javax.swing.JLabel jlbEmail;
+    private javax.swing.JLabel jlbName;
+    private javax.swing.JLabel jlbPass;
+    private javax.swing.JLabel jlbPhone;
+    private javax.swing.JPasswordField pasCPass;
+    private javax.swing.JPasswordField pasPass;
+    private javax.swing.JTextField txtAcc;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }
