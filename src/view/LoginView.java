@@ -4,10 +4,11 @@
  */
 package view;
 
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -23,6 +24,9 @@ public class LoginView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon(this.getClass().getResource("/img/iconTitle.png"));
         this.setIconImage(img.getImage()); 
+        Border emptyBorder = BorderFactory.createEmptyBorder(btnLogin.getBorder().getBorderInsets(btnLogin).top, btnLogin.getBorder().getBorderInsets(btnLogin).left, btnLogin.getBorder().getBorderInsets(btnLogin).bottom, btnLogin.getBorder().getBorderInsets(btnLogin).right);
+
+
     }
 
     /**
@@ -59,6 +63,7 @@ public class LoginView extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 60, 20));
 
         btnLogin.setText("Đăng nhập");
+        btnLogin.setFocusPainted(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);

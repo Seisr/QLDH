@@ -4,7 +4,7 @@
  */
 package model;
 
-import bar.*;
+//import bar.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 

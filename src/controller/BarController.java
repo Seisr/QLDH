@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import view.DonHangView;
 import view.GioHangView;
+import view.KhachHangView;
 import view.SanPhamView;
 
 /**
@@ -75,6 +76,9 @@ public class BarController {
                     break;
                 case "DonHang":
                     node = new DonHangView();
+                    break;
+                case "KhachHang":
+                    node = new KhachHangView();
                     break;
                 default:
                     node = new SanPhamView();

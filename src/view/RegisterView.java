@@ -90,9 +90,10 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 140, -1));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nBack3.jpg"))); // NOI18N
-        btnBack.setMaximumSize(new java.awt.Dimension(36, 36));
+        btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnBack.setMaximumSize(new java.awt.Dimension(29, 29));
         btnBack.setMinimumSize(new java.awt.Dimension(26, 26));
-        btnBack.setPreferredSize(new java.awt.Dimension(36, 36));
+        btnBack.setPreferredSize(new java.awt.Dimension(29, 29));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);

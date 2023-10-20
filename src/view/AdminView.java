@@ -6,7 +6,10 @@ package view;
 
 import model.Bar;
 import controller.BarController;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,10 +27,11 @@ public class AdminView extends javax.swing.JFrame {
         BarController barCon = new BarController(jpnView);
         barCon.setView(jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();
-        listItem.add(new Bar("SanPham",jpnSanPham,jlbSanPham));
-        listItem.add(new Bar("GioHang",jpnGioHang,jlbGioHang));
-        listItem.add(new Bar("DonHang",jpnDonHang,jlbDonHang));
-        
+        listItem.add(new Bar("SanPham", jpnSanPham, jlbSanPham));
+        listItem.add(new Bar("GioHang", jpnGioHang, jlbGioHang));
+        listItem.add(new Bar("DonHang", jpnDonHang, jlbDonHang));
+        listItem.add(new Bar("KhachHang",jpnKhachHang,jLabel2));
+
         barCon.setEvent(listItem);
     }
 
@@ -51,11 +55,26 @@ public class AdminView extends javax.swing.JFrame {
         jpnDonHang = new javax.swing.JPanel();
         jlbDonHang = new javax.swing.JLabel();
         jlbNhom = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
+        jpnKhachHang = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1060, 2147483647));
+        setMinimumSize(new java.awt.Dimension(1060, 590));
+        setPreferredSize(new java.awt.Dimension(1060, 590));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jpnRoot.setMaximumSize(new java.awt.Dimension(1050, 554));
+        jpnRoot.setMinimumSize(new java.awt.Dimension(1050, 640));
+        jpnRoot.setPreferredSize(new java.awt.Dimension(1050, 554));
+        jpnRoot.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnBar.setBackground(new java.awt.Color(82, 83, 81));
+        jpnBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/order2.jpg"))); // NOI18N
         jLabel1.setText("Quản lý bán hàng");
@@ -77,6 +96,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
+        jpnBar.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         jpnSanPham.setPreferredSize(new java.awt.Dimension(158, 74));
         jpnSanPham.setVerifyInputWhenFocusTarget(false);
 
@@ -90,7 +111,7 @@ public class AdminView extends javax.swing.JFrame {
             .addGroup(jpnSanPhamLayout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addComponent(jlbSanPham)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jpnSanPhamLayout.setVerticalGroup(
             jpnSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,6 +120,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addComponent(jlbSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
+
+        jpnBar.add(jpnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 163, -1));
 
         jpnGioHang.setPreferredSize(new java.awt.Dimension(158, 74));
         jpnGioHang.setVerifyInputWhenFocusTarget(false);
@@ -126,6 +149,8 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        jpnBar.add(jpnGioHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 163, -1));
+
         jlbDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/order-delivery.png"))); // NOI18N
         jlbDonHang.setText("Đơn hàng");
         jlbDonHang.setMaximumSize(new java.awt.Dimension(73, 16));
@@ -137,7 +162,7 @@ public class AdminView extends javax.swing.JFrame {
         jpnDonHangLayout.setHorizontalGroup(
             jpnDonHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jlbDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -149,85 +174,74 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
+        jpnBar.add(jpnDonHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, 163, -1));
+
         jlbNhom.setForeground(new java.awt.Color(255, 255, 255));
         jlbNhom.setText("Nhóm 3 - KhaTrang");
+        jpnBar.add(jlbNhom, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 515, -1, -1));
 
-        javax.swing.GroupLayout jpnBarLayout = new javax.swing.GroupLayout(jpnBar);
-        jpnBar.setLayout(jpnBarLayout);
-        jpnBarLayout.setHorizontalGroup(
-            jpnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpnBarLayout.createSequentialGroup()
-                .addGroup(jpnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpnBarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jpnSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(jpnGioHang, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(jpnDonHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jpnBarLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jlbNhom)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/log-out244.jpg"))); // NOI18N
+        btnExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExit.setMaximumSize(new java.awt.Dimension(30, 31));
+        btnExit.setOpaque(false);
+        btnExit.setPreferredSize(new java.awt.Dimension(27, 27));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        jpnBar.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 476, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/khachhang.jpg"))); // NOI18N
+        jLabel2.setText("Khách hàng");
+
+        javax.swing.GroupLayout jpnKhachHangLayout = new javax.swing.GroupLayout(jpnKhachHang);
+        jpnKhachHang.setLayout(jpnKhachHangLayout);
+        jpnKhachHangLayout.setHorizontalGroup(
+            jpnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnKhachHangLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel2)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-        jpnBarLayout.setVerticalGroup(
-            jpnBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnBarLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnDonHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbNhom)
-                .addGap(16, 16, 16))
+        jpnKhachHangLayout.setVerticalGroup(
+            jpnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpnKhachHangLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel2)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
+
+        jpnBar.add(jpnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 320, 163, -1));
+
+        jpnRoot.add(jpnBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 554));
 
         jpnView.setBackground(new java.awt.Color(204, 204, 204));
+        jpnView.setMaximumSize(new java.awt.Dimension(1070, 612));
+        jpnView.setPreferredSize(new java.awt.Dimension(1070, 612));
+        jpnView.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpnRoot.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
-        javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
-        jpnView.setLayout(jpnViewLayout);
-        jpnViewLayout.setHorizontalGroup(
-            jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 707, Short.MAX_VALUE)
-        );
-        jpnViewLayout.setVerticalGroup(
-            jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Food20.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jpnRoot.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1000, 640));
 
-        javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
-        jpnRoot.setLayout(jpnRootLayout);
-        jpnRootLayout.setHorizontalGroup(
-            jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnRootLayout.createSequentialGroup()
-                .addComponent(jpnBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpnRootLayout.setVerticalGroup(
-            jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jpnRootLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jpnRoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn trở về màn hình đăng nhập?", "Cảnh báo", dialogButton);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            LoginView lv = new LoginView();
+            lv.setVisible(true);
+            setVisible(false);
+        }
+
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,7 +280,10 @@ public class AdminView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jlbDonHang;
     private javax.swing.JLabel jlbGioHang;
@@ -275,8 +292,10 @@ public class AdminView extends javax.swing.JFrame {
     private javax.swing.JPanel jpnBar;
     private javax.swing.JPanel jpnDonHang;
     private javax.swing.JPanel jpnGioHang;
+    private javax.swing.JPanel jpnKhachHang;
     private javax.swing.JPanel jpnRoot;
     private javax.swing.JPanel jpnSanPham;
     private javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables
+
 }
