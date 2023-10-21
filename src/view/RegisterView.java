@@ -173,9 +173,6 @@ public class RegisterView extends javax.swing.JFrame {
         String tenDN = txtAcc.getText();
         String matKhau = pasPass.getText();
         String cMatKhau = pasCPass.getText();
-//        String vaiTro = "User";
-        int soDT2 = Integer.parseInt(soDT);
-
         KhachHang kh = new KhachHang(tenDN, tenKH, matKhau, soDT, email);
         RegisterController rc = new RegisterController(kh, this, cMatKhau, jlbName, jlbEmail, jlbPhone, jlbPass,jlbCPass);
         rc.register();

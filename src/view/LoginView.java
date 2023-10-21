@@ -4,11 +4,8 @@
  */
 package view;
 
-import java.awt.Color;
-import javax.swing.BorderFactory;
+import controller.LoginController;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 
 /**
  *
@@ -24,9 +21,6 @@ public class LoginView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         ImageIcon img = new ImageIcon(this.getClass().getResource("/img/iconTitle.png"));
         this.setIconImage(img.getImage()); 
-        Border emptyBorder = BorderFactory.createEmptyBorder(btnLogin.getBorder().getBorderInsets(btnLogin).top, btnLogin.getBorder().getBorderInsets(btnLogin).left, btnLogin.getBorder().getBorderInsets(btnLogin).bottom, btnLogin.getBorder().getBorderInsets(btnLogin).right);
-
-
     }
 
     /**
@@ -113,19 +107,8 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user = txtAccount.getText();
         String pass = pasPass.getText();
-        if (user.equals("admin") && pass.equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Admin đăng nhập thành công","Admin",JOptionPane.INFORMATION_MESSAGE);
-            AdminView h = new AdminView();
-            h.setVisible(true);
-            setVisible(false);
-        } else if (user.equals("user") && pass.equals("user")) {
-            JOptionPane.showMessageDialog(null, "User đăng nhập thành công","User",JOptionPane.INFORMATION_MESSAGE);
-            UserView uh = new UserView();
-            uh.setVisible(true);
-            setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "Đăng nhập thất bại","Fail",JOptionPane.ERROR_MESSAGE);
-        }
+        LoginController lc = new LoginController();
+        lc.login(user,pass);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed

@@ -4,15 +4,15 @@
  */
 package dao;
 
-import java.util.ArrayList;
 import model.KhachHang;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
  * @author A715-42G
  */
-public class KhachHangDAO implements DAOInterface {
+public class KhachHangDAO {
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
     public static int insert(KhachHang kh) throws SQLException {
@@ -54,33 +54,19 @@ public class KhachHangDAO implements DAOInterface {
         return kq;
     }
 
-    public KhachHang selectByID(KhachHang kh) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public static ResultSet selectAll() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
+        return rs;
     }
 
-    @Override
-    public ArrayList selectByCond(String cond) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int insert(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int update(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int delete(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public Object selectByID(Object t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public static ResultSet selectByMaKH(String kh) throws SQLException {
+        JDBC db = new JDBC();
+        String query = "SELECT TENDN, MATKHAU FROM KHACHHANG WHERE TENDN='"+kh+"'";
+        System.out.println(query);
+        ResultSet rs = db.executeQuery(query);
+        System.out.println(rs);
+        return rs;
     }
 
 }
