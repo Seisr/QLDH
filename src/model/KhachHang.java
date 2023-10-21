@@ -16,17 +16,16 @@ public class KhachHang {
     private String tenKH;
     private String tenDN;
     private String matKhau;
-    private String vaiTro;
+    private String vaiTro = "user";
     private String soDT;
     private String email;
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
-
-    public KhachHang(String tenDN,String tenKH, String matKhau, String vaiTro, String soDT, String email) {
+    public KhachHang(String tenDN, String tenKH, String matKhau , String soDT, String email) {
         this.tenKH = tenKH;
         this.tenDN = tenDN;
+//        this.vaiTro = vaiTro;
         this.matKhau = matKhau;
-        this.vaiTro = vaiTro;
         this.soDT = soDT;
         this.email = email;
     }
@@ -86,5 +85,5 @@ public class KhachHang {
     public void setEmail(String email) {
         this.email = email;
     }
-  
+
 }

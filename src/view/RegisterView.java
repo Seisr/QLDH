@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.RegisterController;
 import dao.KhachHangDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -166,82 +167,18 @@ public class RegisterView extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        String hoTen = txtName.getText();
+        String tenKH = txtName.getText();
+        String email = txtEmail.getText();
+        String soDT = txtPhone.getText();
         String tenDN = txtAcc.getText();
         String matKhau = pasPass.getText();
         String cMatKhau = pasCPass.getText();
-        String vaiTro = "User";
-        String soDT = txtPhone.getText();
+//        String vaiTro = "User";
         int soDT2 = Integer.parseInt(soDT);
-        String email = txtEmail.getText();
-        KhachHang kh = new KhachHang(tenDN,hoTen, matKhau, vaiTro, soDT, email);
 
-        String regexEmail = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
-        String regexPass = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,12}$";
-        String regexPhone = "^[0-9]+$";
-        String regexName = "[a-zA-Z]+\\.?";
-        String regexCPass = matKhau;
-
-        Pattern ptEmail = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
-        Pattern ptPass = Pattern.compile(regexPass, Pattern.CASE_INSENSITIVE);
-        Pattern ptPhone = Pattern.compile(regexPhone, Pattern.CASE_INSENSITIVE);
-        Pattern ptName = Pattern.compile(regexName, Pattern.CASE_INSENSITIVE);
-        Pattern ptCPass = Pattern.compile(regexCPass);
-
-        Matcher mtcEmail = ptEmail.matcher(email);
-        Matcher mtcPass = ptPass.matcher(matKhau);
-        Matcher mtcPhone = ptPhone.matcher(soDT);
-        Matcher mtcName = ptName.matcher(hoTen);
-        Matcher mtcCPass = ptCPass.matcher(cMatKhau);
-
-        boolean valName = mtcName.find();
-        boolean valEmail = mtcEmail.find();
-        boolean valPhone = mtcPhone.find();
-        boolean valPass = mtcPass.find();
-        boolean valCPass = mtcCPass.find();
-
-        boolean valid = valEmail && valPass && valPhone && valName;
-        System.out.println(valid);
-//        try {
-        if (valName) {
-            jlbName.setText("");
-        } else {
-            jlbName.setText("Tên không được có số");
-        }
-        if (valEmail) {
-            jlbEmail.setText("");
-        } else {
-            jlbEmail.setText("Email không hợp lệ");
-        }
-        if (valPhone && (soDT.length() == 10 || soDT.length() == 11)) {
-            jlbPhone.setText("");
-        } else {
-            jlbPhone.setText("Số điện thoại chỉ gồm số và có từ 10-11 chữ số ");
-        }
-        if (valPass) {
-            jlbPass.setText("");
-        } else {
-            jlbPass.setText("Mật khẩu phải gồm ít nhất 1 ký tự Hoa, 1 ký tự thường và 1 chữ số");
-        }
-        if(valCPass){
-            jlbCPass.setText("");
-        } else {
-            jlbCPass.setText("Mật khẩu xác nhận không trùng khớp");
-        }
-        if (!valid) {
-            System.out.println("Input ko hợp lệ");
-        } else {
-            try {
-                KhachHangDAO.insert(kh);
-                JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-                LoginView l = new LoginView();
-                l.setVisible(true);
-                setVisible(false);
-            } catch (SQLException ex) {
-                Logger.getLogger(RegisterView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
+        KhachHang kh = new KhachHang(tenDN, tenKH, matKhau, soDT, email);
+        RegisterController rc = new RegisterController(kh, this, cMatKhau, jlbName, jlbEmail, jlbPhone, jlbPass,jlbCPass);
+        rc.register();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**

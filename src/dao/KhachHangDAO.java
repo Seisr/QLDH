@@ -19,9 +19,9 @@ public class KhachHangDAO implements DAOInterface {
         JDBC db = new JDBC();
         String insertSQL = "INSERT INTO KHACHHANG VALUES('"
                 + kh.getTenDN() + "',N'"
+                + kh.getVaiTro() + "','"
                 + kh.getTenKH() + "',N'"
-                + kh.getMatKhau() + "',N'"
-                + kh.getVaiTro() + "',"
+                + kh.getMatKhau() + "',"
                 + kh.getSoDT() + ",N'"
                 + kh.getEmail() + "')";
         System.out.println(insertSQL);
