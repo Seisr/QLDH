@@ -61,6 +61,7 @@ public class BarController {
             case "KhachHang":
                 nodeS = new KhachHangView();
                 break;
+                
         }
         root.add(nodeS); // ???
         root.validate(); // ???
@@ -109,9 +110,6 @@ public class BarController {
                     break;
                 case "KhachHang":
                     node = new KhachHangView();
-                    break;
-                default:
-                    node = new SanPhamAdminView();
                     break;
             }
             root.removeAll();

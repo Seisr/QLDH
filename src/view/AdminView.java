@@ -27,7 +27,7 @@ public class AdminView extends javax.swing.JFrame {
         BarController barCon = new BarController(jpnView);
         barCon.setView("SanPhamAdmin", jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();
-        listItem.add(new Bar("SanPham", jpnSanPham, jlbSanPham));
+        listItem.add(new Bar("SanPhamAdmin", jpnSanPham, jlbSanPham));
         listItem.add(new Bar("GioHang", jpnGioHang, jlbGioHang));
         listItem.add(new Bar("DonHang", jpnDonHang, jlbDonHang));
         listItem.add(new Bar("KhachHang", jpnKhachHang, jLabel2));

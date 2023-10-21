@@ -21,8 +21,7 @@ import view.UserView;
  */
 public class LoginController {
 
-    private KhachHang model;
-    private LoginView view;
+    private LoginView view = new LoginView();
 
     String userDB = "";
     String passDB = "";
