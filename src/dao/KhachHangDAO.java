@@ -18,8 +18,8 @@ public class KhachHangDAO implements DAOInterface {
     public static int insert(KhachHang kh) throws SQLException {
         JDBC db = new JDBC();
         String insertSQL = "INSERT INTO KHACHHANG VALUES('"
-                + kh.getTenKH() + "',N'"
                 + kh.getTenDN() + "',N'"
+                + kh.getTenKH() + "',N'"
                 + kh.getMatKhau() + "',N'"
                 + kh.getVaiTro() + "',"
                 + kh.getSoDT() + ",N'"
@@ -29,11 +29,10 @@ public class KhachHangDAO implements DAOInterface {
         return kq;
     }
 
-
     public static int update(KhachHang kh) throws SQLException {
         JDBC db = new JDBC();
         String updateSQL = "UPDATE KHACHHANG"
-               + "SET TENKH =N'" + kh.getTenKH() + "'"
+                + "SET TENKH =N'" + kh.getTenKH() + "'"
                 + ",TENDN=N'" + kh.getTenDN() + "'"
                 + ",MATKHAU=N'" + kh.getMatKhau() + "'"
                 + ",VAITRO=N'" + kh.getVaiTro() + "'"
@@ -43,19 +42,17 @@ public class KhachHangDAO implements DAOInterface {
         System.out.println(updateSQL);
         int kq = db.executeUpdate(updateSQL);
         return kq;
-                
-    }
 
+    }
 
     public static int delete(KhachHang kh) throws SQLException {
         JDBC db = new JDBC();
         String deleteSQL = "DELETE FROM KHACHHANG"
-                + "WHERE MAKH='" + kh.getMaKH() +"'";
+                + "WHERE MAKH='" + kh.getMaKH() + "'";
         System.out.println(deleteSQL);
         int kq = db.executeUpdate(deleteSQL);
         return kq;
     }
-
 
     public KhachHang selectByID(KhachHang kh) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -68,23 +65,22 @@ public class KhachHangDAO implements DAOInterface {
 
     @Override
     public int insert(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int update(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int delete(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Object selectByID(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-
 
 }

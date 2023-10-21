@@ -8,6 +8,8 @@ import dao.KhachHangDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import model.KhachHang;
 
@@ -113,19 +115,15 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jlbAcc.setForeground(new java.awt.Color(255, 255, 255));
-        jlbAcc.setText("123");
         getContentPane().add(jlbAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
 
         jlbEmail.setForeground(new java.awt.Color(255, 255, 255));
-        jlbEmail.setText("jLabel1");
         getContentPane().add(jlbEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
         jlbPass.setForeground(new java.awt.Color(255, 255, 255));
-        jlbPass.setText("jLabel8");
         getContentPane().add(jlbPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
         jlbCPass.setForeground(new java.awt.Color(255, 255, 255));
-        jlbCPass.setText("jLabel6");
         getContentPane().add(jlbCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,13 +135,11 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, -1, -1));
 
         jlbName.setForeground(new java.awt.Color(255, 255, 255));
-        jlbName.setText("jLabel12");
         getContentPane().add(jlbName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, -1));
         getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 140, -1));
         getContentPane().add(txtPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 140, -1));
 
         jlbPhone.setForeground(new java.awt.Color(255, 255, 255));
-        jlbPhone.setText("jLabel11");
         getContentPane().add(jlbPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
 
         anhNen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/register.jpg"))); // NOI18N
@@ -173,21 +169,79 @@ public class RegisterView extends javax.swing.JFrame {
         String hoTen = txtName.getText();
         String tenDN = txtAcc.getText();
         String matKhau = pasPass.getText();
+        String cMatKhau = pasCPass.getText();
         String vaiTro = "User";
         String soDT = txtPhone.getText();
+        int soDT2 = Integer.parseInt(soDT);
         String email = txtEmail.getText();
-        KhachHang kh = new KhachHang(hoTen, tenDN, matKhau, vaiTro, soDT, email);
-        try {
-            KhachHangDAO.insert(kh);
-            JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-            LoginView l = new LoginView();
-            l.setVisible(true);
-            setVisible(false);
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterView.class.getName()).log(Level.SEVERE, null, ex);
+        KhachHang kh = new KhachHang(tenDN,hoTen, matKhau, vaiTro, soDT, email);
+
+        String regexEmail = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
+        String regexPass = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,12}$";
+        String regexPhone = "^[0-9]+$";
+        String regexName = "[a-zA-Z]+\\.?";
+        String regexCPass = matKhau;
+
+        Pattern ptEmail = Pattern.compile(regexEmail, Pattern.CASE_INSENSITIVE);
+        Pattern ptPass = Pattern.compile(regexPass, Pattern.CASE_INSENSITIVE);
+        Pattern ptPhone = Pattern.compile(regexPhone, Pattern.CASE_INSENSITIVE);
+        Pattern ptName = Pattern.compile(regexName, Pattern.CASE_INSENSITIVE);
+        Pattern ptCPass = Pattern.compile(regexCPass);
+
+        Matcher mtcEmail = ptEmail.matcher(email);
+        Matcher mtcPass = ptPass.matcher(matKhau);
+        Matcher mtcPhone = ptPhone.matcher(soDT);
+        Matcher mtcName = ptName.matcher(hoTen);
+        Matcher mtcCPass = ptCPass.matcher(cMatKhau);
+
+        boolean valName = mtcName.find();
+        boolean valEmail = mtcEmail.find();
+        boolean valPhone = mtcPhone.find();
+        boolean valPass = mtcPass.find();
+        boolean valCPass = mtcCPass.find();
+
+        boolean valid = valEmail && valPass && valPhone && valName;
+        System.out.println(valid);
+//        try {
+        if (valName) {
+            jlbName.setText("");
+        } else {
+            jlbName.setText("Tên không được có số");
         }
+        if (valEmail) {
+            jlbEmail.setText("");
+        } else {
+            jlbEmail.setText("Email không hợp lệ");
+        }
+        if (valPhone && (soDT.length() == 10 || soDT.length() == 11)) {
+            jlbPhone.setText("");
+        } else {
+            jlbPhone.setText("Số điện thoại chỉ gồm số và có từ 10-11 chữ số ");
+        }
+        if (valPass) {
+            jlbPass.setText("");
+        } else {
+            jlbPass.setText("Mật khẩu phải gồm ít nhất 1 ký tự Hoa, 1 ký tự thường và 1 chữ số");
+        }
+        if(valCPass){
+            jlbCPass.setText("");
+        } else {
+            jlbCPass.setText("Mật khẩu xác nhận không trùng khớp");
+        }
+        if (!valid) {
+            System.out.println("Input ko hợp lệ");
+        } else {
+            try {
+                KhachHangDAO.insert(kh);
+                JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
+                LoginView l = new LoginView();
+                l.setVisible(true);
+                setVisible(false);
+            } catch (SQLException ex) {
+                Logger.getLogger(RegisterView.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**

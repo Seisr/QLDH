@@ -57,11 +57,11 @@ public class LoginView extends javax.swing.JFrame {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tên đăng nhập");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 90, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 90, 30));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mật khẩu");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 60, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 60, 20));
 
         btnLogin.setText("Đăng nhập");
         btnLogin.setFocusPainted(false);
@@ -70,9 +70,9 @@ public class LoginView extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 110, -1));
-        getContentPane().add(txtAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 100, 30));
-        getContentPane().add(pasPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 100, 30));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 110, -1));
+        getContentPane().add(txtAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 100, 30));
+        getContentPane().add(pasPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 100, 30));
 
         btnRegister.setText("Đăng ký");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class LoginView extends javax.swing.JFrame {
                 btnRegisterActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 110, -1));
+        getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 110, -1));
 
         checkShow.setForeground(new java.awt.Color(255, 255, 255));
         checkShow.setText("Hiện mật khẩu");
@@ -91,7 +91,7 @@ public class LoginView extends javax.swing.JFrame {
                 checkShowActionPerformed(evt);
             }
         });
-        getContentPane().add(checkShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+        getContentPane().add(checkShow, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
         btnLoginAsGuest.setText("Đăng nhập với tư cách khách mời");
         btnLoginAsGuest.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class LoginView extends javax.swing.JFrame {
                 btnLoginAsGuestActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLoginAsGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 370, -1, -1));
+        getContentPane().add(btnLoginAsGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         lblWall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/8.jpg"))); // NOI18N
         getContentPane().add(lblWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -620, 1090, 1680));

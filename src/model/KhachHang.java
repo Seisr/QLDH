@@ -22,7 +22,7 @@ public class KhachHang {
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
 
-    public KhachHang(String tenKH, String tenDN, String matKhau, String vaiTro, String soDT, String email) {
+    public KhachHang(String tenDN,String tenKH, String matKhau, String vaiTro, String soDT, String email) {
         this.tenKH = tenKH;
         this.tenDN = tenDN;
         this.matKhau = matKhau;
