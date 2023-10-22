@@ -12,21 +12,26 @@ import java.sql.SQLException;
 
 public class JDBC {
     
-    private static final String JDBC_URL = "jdbc:sqlserver://localhost:1433;trustServerCertificate=True;integratedSecurity=true;" 
+    private static final String JDBC_URL = "jdbc:sqlserver://localhost:1433;trustServerCertificate=True;;integratedSecurity=true;" 
             + "databaseName=QUANLYBANHANG";
     private static final String JDBC_USERNAME = "sa";
     private static final String JDBC_PASSWORD = "";
     
 
-    private Connection connection;
+    public static Connection connection;
 
     public JDBC() {
         try {
             //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
-        } catch (SQLException e) { //ClassNotFoundException | 
-            e.printStackTrace();
-        }
+        } catch (SQLException e) {
+            //ClassNotFoundException |
+                    }
+    }
+    
+    public static Connection getConnection() throws SQLException {
+        connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+        return JDBC.connection;
     }
 
     public ResultSet executeQuery(String sqlQuery) throws SQLException {

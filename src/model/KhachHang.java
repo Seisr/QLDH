@@ -4,7 +4,6 @@
  */
 package model;
 
-import java.math.BigInteger;
 
 /**
  *
@@ -12,13 +11,18 @@ import java.math.BigInteger;
  */
 public class KhachHang {
 
-    private BigInteger maKH;
+    private int maKH;
     private String tenKH;
     private String tenDN;
     private String matKhau;
     private String vaiTro = "user";
     private String soDT;
     private String email;
+
+    public KhachHang() {
+    }
+    
+    
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
     public KhachHang(String tenDN, String tenKH, String matKhau , String soDT, String email) {
@@ -30,11 +34,11 @@ public class KhachHang {
         this.email = email;
     }
 
-    public BigInteger getMaKH() {
+    public int getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(BigInteger maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 
@@ -43,7 +47,7 @@ public class KhachHang {
     }
 
     public void setTenKH(String hoTen) {
-        this.tenKH = tenKH;
+        this.tenKH = hoTen;
     }
 
     public String getTenDN() {

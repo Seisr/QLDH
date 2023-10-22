@@ -5,7 +5,8 @@
 package controller;
 
 import dao.KhachHangDAO;
-import java.sql.ResultSet;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,33 +24,34 @@ public class LoginController {
 
     private LoginView view = new LoginView();
 
-    String userDB = "";
-    String passDB = "";
-
-    public void login(String user,String pass) {
+    public void login(String user,String pass) throws FileNotFoundException {
 
         try {
-            ResultSet rs = KhachHangDAO.selectByMaKH(user);
-            while (rs.next()) {
-                userDB = rs.getString("TENDN");
-                passDB = rs.getString("MATKHAU");
+            KhachHang kh = KhachHangDAO.selectByTenDN(user);
+            if (kh == null) {
+                JOptionPane.showMessageDialog(null, "User ko ton tai", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (!kh.getMatKhau().equals(pass)) {
+                JOptionPane.showMessageDialog(null, "Sai tài khoản hoặc mật khẩu", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            try (PrintWriter writer = new PrintWriter("mydata.ser")) {
+                writer.println(kh.getMaKH());
+            }
+            if (kh.getVaiTro().equalsIgnoreCase("admin")) {
+                JOptionPane.showMessageDialog(null, "Admin đăng nhập thành công", "Admin", JOptionPane.INFORMATION_MESSAGE);
+                AdminView h = new AdminView();
+                h.setVisible(true);
+                view.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
+                UserView uh = new UserView();
+                uh.setVisible(true);
+                view.setVisible(false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (user.equals("admin") && pass.equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Admin đăng nhập thành công", "Admin", JOptionPane.INFORMATION_MESSAGE);
-            AdminView h = new AdminView();
-            h.setVisible(true);
-            view.setVisible(false);
-        } else if (user.equals(userDB) && pass.equals(passDB)) {
-            JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
-            UserView uh = new UserView();
-            uh.setVisible(true);
-            view.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "Sai tài khoản hoặc mật khẩu", "Thất bại", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
