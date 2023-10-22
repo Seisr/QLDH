@@ -5,6 +5,8 @@
 package controller;
 
 import dao.KhachHangDAO;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +15,8 @@ import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import model.KhachHang;
-import view.LoginView;
 import view.RegisterView;
+import view.UserView;
 
 /**
  *
@@ -22,16 +24,16 @@ import view.RegisterView;
  */
 public class RegisterController {
 
-    private KhachHang model;
-    private RegisterView view;
+    private final KhachHang model;
+    private final RegisterView view;
     
-    private String cMatKhau;
+    private final String cMatKhau;
     
-    private JLabel jlbName;
-    private JLabel jlbEmail;
-    private JLabel jlbPhone;
-    private JLabel jlbPass;
-    private JLabel jlbCPass;
+    private final JLabel jlbName;
+    private final JLabel jlbEmail;
+    private final JLabel jlbPhone;
+    private final JLabel jlbPass;
+    private final JLabel jlbCPass;
 
     public RegisterController(KhachHang model, RegisterView view, String cMatKhau, JLabel jlbName, JLabel jlbEmail, JLabel jlbPhone, JLabel jlbPass, JLabel jlbCPass) {
         this.model = model;
@@ -61,7 +63,7 @@ public class RegisterController {
         Matcher mtcEmail = ptEmail.matcher(model.getEmail());
         Matcher mtcPass = ptPass.matcher(model.getMatKhau());
         Matcher mtcPhone = ptPhone.matcher(model.getSoDT());
-        Matcher mtcName = ptName.matcher(model.getTenKH());
+        Matcher mtcName = ptName.matcher(model.getHoTen());
         Matcher mtcCPass = ptCPass.matcher(cMatKhau);
 
         boolean valName = mtcName.find();
@@ -102,9 +104,14 @@ public class RegisterController {
             System.out.println("Input ko hợp lệ");
         } else {
             try {
-                KhachHangDAO.insert(model);
+                int maKH = KhachHangDAO.insert(model).getMaKH();
+                try (PrintWriter writer = new PrintWriter("mydata.ser")) {
+                    writer.println(maKH);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-                LoginView l = new LoginView();
+                UserView l = new UserView();
                 l.setVisible(true);
                 view.setVisible(false);
             } catch (SQLException ex) {

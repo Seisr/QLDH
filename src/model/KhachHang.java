@@ -12,7 +12,7 @@ package model;
 public class KhachHang {
 
     private int maKH;
-    private String tenKH;
+    private String hoten;
     private String tenDN;
     private String matKhau;
     private String vaiTro = "user";
@@ -25,8 +25,8 @@ public class KhachHang {
     
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
-    public KhachHang(String tenDN, String tenKH, String matKhau , String soDT, String email) {
-        this.tenKH = tenKH;
+    public KhachHang(String tenDN, String hoten, String matKhau , String soDT, String email) {
+        this.hoten = hoten;
         this.tenDN = tenDN;
 //        this.vaiTro = vaiTro;
         this.matKhau = matKhau;
@@ -42,12 +42,12 @@ public class KhachHang {
         this.maKH = maKH;
     }
 
-    public String getTenKH() {
-        return tenKH;
+    public String getHoTen() {
+        return hoten;
     }
 
-    public void setTenKH(String hoTen) {
-        this.tenKH = hoTen;
+    public void setHoTen(String hoTen) {
+        this.hoten = hoTen;
     }
 
     public String getTenDN() {
