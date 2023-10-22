@@ -4,6 +4,8 @@
  */
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import model.KhachHang;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -60,13 +62,23 @@ public class KhachHangDAO {
         return rs;
     }
 
-    public static ResultSet selectByMaKH(String kh) throws SQLException {
-        JDBC db = new JDBC();
-        String query = "SELECT TENDN, MATKHAU FROM KHACHHANG WHERE TENDN='"+kh+"'";
-        System.out.println(query);
-        ResultSet rs = db.executeQuery(query);
-        System.out.println(rs);
-        return rs;
+    public static KhachHang selectByTenDN(String tendn) throws SQLException {
+        Connection connection = JDBC.getConnection();
+        String sql = "SELECT TOP 1 * FROM KHACHHANG WHERE TENDN=?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setString(1, tendn);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            KhachHang kh = new KhachHang();
+            kh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
+            kh.setEmail(rs.getString("EMAIL"));
+            kh.setTenKH(rs.getString("HOTEN"));
+            kh.setSoDT(rs.getString("SODT"));
+            kh.setTenDN(rs.getString("TENDN"));
+            kh.setVaiTro(rs.getString("VAITRO"));
+            kh.setMatKhau(rs.getString("MATKHAU"));
+            return kh;
+        }
+        return null;
     }
-
 }

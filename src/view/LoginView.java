@@ -5,6 +5,9 @@
 package view;
 
 import controller.LoginController;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -108,7 +111,11 @@ public class LoginView extends javax.swing.JFrame {
         String user = txtAccount.getText();
         String pass = pasPass.getText();
         LoginController lc = new LoginController();
-        lc.login(user,pass);
+        try {
+            lc.login(user,pass);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
