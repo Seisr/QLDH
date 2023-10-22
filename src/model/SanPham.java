@@ -4,23 +4,24 @@
  */
 package model;
 
-import java.math.BigInteger;
-
 /**
  *
  * @author A715-42G
  */
 public class SanPham {
 
-    private BigInteger maSP;
+    private Integer maSP;
     private String tenSP;
     private String moTa;
-    private BigInteger donGia;
+    private Integer donGia;
     private int soLuongTonKho;
     private String hinhAnh;
     private String loai;
 
-    public SanPham(BigInteger maSP, String tenSP, String moTa, BigInteger donGia, int soLuongTonKho, String hinhAnh, String loai) {
+    public SanPham() {
+    }
+
+    public SanPham(Integer maSP, String tenSP, String moTa, Integer donGia, int soLuongTonKho, String hinhAnh, String loai) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.moTa = moTa;
@@ -30,11 +31,11 @@ public class SanPham {
         this.loai = loai;
     }
 
-    public BigInteger getMaSP() {
+    public Integer getMaSP() {
         return maSP;
     }
 
-    public void setMaSP(BigInteger maSP) {
+    public void setMaSP(Integer maSP) {
         this.maSP = maSP;
     }
 
@@ -54,11 +55,11 @@ public class SanPham {
         this.moTa = moTa;
     }
 
-    public BigInteger getDonGia() {
+    public Integer getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(BigInteger donGia) {
+    public void setDonGia(Integer donGia) {
         this.donGia = donGia;
     }
 
@@ -85,6 +86,4 @@ public class SanPham {
     public void setLoai(String loai) {
         this.loai = loai;
     }
-    
-
 }

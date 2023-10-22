@@ -6,6 +6,7 @@ package view;
 
 import controller.LoginController;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -136,7 +137,13 @@ public class LoginView extends javax.swing.JFrame {
 
     private void btnLoginAsGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginAsGuestActionPerformed
         // TODO add your handling code here:
-        GuestView g = new GuestView();
+        try (PrintWriter writer = new PrintWriter("mydata.ser")) {
+                writer.println(0);
+                writer.println("guest");
+            } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        HomeView g = new HomeView();
         g.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnLoginAsGuestActionPerformed

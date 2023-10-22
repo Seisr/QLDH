@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 import view.DonHangView;
 import view.GioHangView;
 import view.KhachHangView;
-import view.SanPhamAdminView;
-import view.SanPhamGuestView;
-import view.SanPhamUserView;
+import view.SanPhamView;
 
 /**
  *
@@ -43,24 +41,10 @@ public class BarController {
         root.removeAll(); // ???
         root.setLayout(new BorderLayout()); // ????
         switch (tp) {
-            case "SanPhamAdmin":
-                nodeS = new SanPhamAdminView();
-                break;
-            case "SanPhamUser":
-                nodeS = new SanPhamUserView();
-                break;
-            case "SanPhamGuest":
-                nodeS = new SanPhamGuestView();
-                break;
-            case "GioHang":
-                nodeS = new GioHangView();
-                break;
-            case "DonHang":
-                nodeS = new DonHangView();
-                break;
-            case "KhachHang":
-                nodeS = new KhachHangView();
-                break;
+            case "SanPham" -> nodeS = new SanPhamView();
+            case "GioHang" -> nodeS = new GioHangView();
+            case "DonHang" -> nodeS = new DonHangView();
+            case "KhachHang" -> nodeS = new KhachHangView();
                 
         }
         root.add(nodeS); // ???
@@ -93,14 +77,8 @@ public class BarController {
         @Override
         public void mouseClicked(MouseEvent e) {
             switch (type) {
-                case "SanPhamAdmin":
-                    node = new SanPhamAdminView();
-                    break;
-                case "SanPhamUser":
-                    node = new SanPhamUserView();
-                    break;
-                case "SanPhamGuest":
-                    node = new SanPhamGuestView();
+                case "SanPham":
+                    node = new SanPhamView();
                     break;
                 case "GioHang":
                     node = new GioHangView();

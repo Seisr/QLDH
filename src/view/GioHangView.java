@@ -4,17 +4,46 @@
  */
 package view;
 
+import controller.GioHangController;
+import controller.SanPhamController;
+import dao.DonHangDAO;
+import dao.GioHangDAO;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.DonHang;
+import model.TrangThaiDH;
+
 /**
  *
  * @author A715-42G
  */
 public class GioHangView extends javax.swing.JPanel {
+    private int maKH = 0;
+    private String vaiTro = "";
+    private GioHangController spac = new GioHangController();
 
     /**
      * Creates new form GioHangView
      */
     public GioHangView() {
         initComponents();
+        try (BufferedReader reader = new BufferedReader(new FileReader("mydata.ser"))) {
+            maKH = Integer.parseInt(reader.readLine());
+            vaiTro = reader.readLine();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Integer total = spac.loadData(listgiohang, maKH);
+        totalLabel.setText(total.toString());
     }
 
     /**
@@ -27,29 +56,138 @@ public class GioHangView extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listgiohang = new javax.swing.JList<>();
+        addressLabel = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        taoDHBtn = new javax.swing.JButton();
+        totalLabel = new javax.swing.JLabel();
+        sdtLabel = new javax.swing.JTextField();
 
-        jLabel1.setText("GioHang");
+        jLabel1.setText("Gio Hang");
+
+        jScrollPane1.setViewportView(listgiohang);
+
+        addressLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressLabelActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Dia chi");
+
+        jLabel3.setText("SDT");
+
+        taoDHBtn.setText("Tao don hang");
+        taoDHBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taoDHBtnActionPerformed(evt);
+            }
+        });
+
+        totalLabel.setText("jLabel4");
+
+        sdtLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sdtLabelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sdtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(185, 185, 185))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(totalLabel)
+                            .addGap(205, 205, 205)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(taoDHBtn)
+                        .addGap(107, 107, 107))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(212, 212, 212)
                 .addComponent(jLabel1)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
                 .addComponent(jLabel1)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(sdtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(totalLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(taoDHBtn)))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addressLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressLabelActionPerformed
+
+    private void taoDHBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taoDHBtnActionPerformed
+        try {
+            // TODO add your handling code here:
+            ArrayList<Integer> maGHs = spac.getMaDH(maKH);
+            DonHang dh = new DonHang();
+            dh.setDiachi(addressLabel.getText());
+            dh.setMaGH(maGHs);
+            dh.setMaKH(maKH);
+            dh.setSdt(sdtLabel.getText());
+            dh.setTongTien(Integer.parseInt(totalLabel.getText()));
+            dh.setTrangThai(TrangThaiDH.DANGXULY);
+            DonHangDAO.insert(dh);
+            for (Integer maGH : maGHs) {
+                GioHangDAO.updateTrangThai(maKH, maGH, Boolean.TRUE);
+            }
+            listgiohang.removeAll();
+            JOptionPane.showMessageDialog(null, "Tao don hang thành công");
+        } catch (SQLException ex) {
+            Logger.getLogger(GioHangView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_taoDHBtnActionPerformed
+
+    private void sdtLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdtLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sdtLabelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addressLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JList<GioHangChiTietView> listgiohang;
+    private javax.swing.JTextField sdtLabel;
+    private javax.swing.JButton taoDHBtn;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

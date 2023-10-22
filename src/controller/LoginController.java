@@ -12,9 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.KhachHang;
-import view.AdminView;
+import view.HomeView;
 import view.LoginView;
-import view.UserView;
+import view.HomeView;
 
 /**
  *
@@ -38,18 +38,13 @@ public class LoginController {
             }
             try (PrintWriter writer = new PrintWriter("mydata.ser")) {
                 writer.println(kh.getMaKH());
+                writer.println(kh.getVaiTro());
             }
-            if (kh.getVaiTro().equalsIgnoreCase("admin")) {
-                JOptionPane.showMessageDialog(null, "Admin đăng nhập thành công", "Admin", JOptionPane.INFORMATION_MESSAGE);
-                AdminView h = new AdminView();
-                h.setVisible(true);
-                view.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
-                UserView uh = new UserView();
-                uh.setVisible(true);
-                view.setVisible(false);
-            }
+            
+            JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
+            HomeView uh = new HomeView();
+            uh.setVisible(true);
+            view.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
