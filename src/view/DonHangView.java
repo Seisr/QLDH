@@ -14,6 +14,7 @@ public class DonHangView extends javax.swing.JPanel {
      * Creates new form DonHangView
      */
     public DonHangView() {
+        //hello-world
         initComponents();
     }
 
