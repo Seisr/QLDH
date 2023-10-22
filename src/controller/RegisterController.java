@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import model.KhachHang;
-import view.LoginView;
 import view.RegisterView;
 import view.UserView;
 
