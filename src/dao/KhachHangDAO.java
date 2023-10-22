@@ -18,17 +18,21 @@ public class KhachHangDAO {
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
     public static int insert(KhachHang kh) throws SQLException {
-        JDBC db = new JDBC();
-        String insertSQL = "INSERT INTO KHACHHANG VALUES('"
-                + kh.getTenDN() + "',N'"
-                + kh.getVaiTro() + "','"
-                + kh.getTenKH() + "',N'"
-                + kh.getMatKhau() + "',"
-                + kh.getSoDT() + ",N'"
-                + kh.getEmail() + "')";
-        System.out.println(insertSQL);
-        int kq = db.executeUpdate(insertSQL);
-        return kq;
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "INSERT INTO KHACHHANG OUTPUT Inserted.MAKH VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, kh.getTenKH());
+            ps.setString(2, kh.getVaiTro());
+            ps.setString(3, kh.getTenKH());
+            ps.setString(4, kh.getMatKhau());
+            ps.setString(5, kh.getSoDT());
+            ps.setString(6, kh.getEmail());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return Integer.parseInt(rs.getString("MAKH"));
+            }
+        }
+        return 0;
     }
 
     public static int update(KhachHang kh) throws SQLException {
