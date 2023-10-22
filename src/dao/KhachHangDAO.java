@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import model.KhachHang;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,53 +18,95 @@ import java.sql.ResultSet;
 public class KhachHangDAO {
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
-    public static int insert(KhachHang kh) throws SQLException {
+    public static KhachHang insert(KhachHang kh) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
-            String sql = "INSERT INTO KHACHHANG OUTPUT Inserted.MAKH VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO KHACHHANG OUTPUT Inserted.* VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareCall(sql);
-            ps.setString(1, kh.getTenKH());
+            ps.setString(1, kh.getTenDN());
             ps.setString(2, kh.getVaiTro());
-            ps.setString(3, kh.getTenKH());
+            ps.setString(3, kh.getHoTen());
             ps.setString(4, kh.getMatKhau());
             ps.setString(5, kh.getSoDT());
             ps.setString(6, kh.getEmail());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                return Integer.parseInt(rs.getString("MAKH"));
+                KhachHang newkh = new KhachHang();
+                newkh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
+                newkh.setEmail(rs.getString("EMAIL"));
+                newkh.setHoTen(rs.getString("HOTEN"));
+                newkh.setSoDT(rs.getString("SODT"));
+                newkh.setTenDN(rs.getString("TENDN"));
+                newkh.setVaiTro(rs.getString("VAITRO"));
+                newkh.setMatKhau(rs.getString("MATKHAU"));
+                return newkh;
             }
         }
-        return 0;
+        return null;
     }
 
-    public static int update(KhachHang kh) throws SQLException {
-        JDBC db = new JDBC();
-        String updateSQL = "UPDATE KHACHHANG"
-                + "SET TENKH =N'" + kh.getTenKH() + "'"
-                + ",TENDN=N'" + kh.getTenDN() + "'"
-                + ",MATKHAU=N'" + kh.getMatKhau() + "'"
-                + ",VAITRO=N'" + kh.getVaiTro() + "'"
-                + ",SODT='" + kh.getSoDT() + "'"
-                + ",EMAIL=N'" + kh.getEmail() + "'"
-                + "WHERE MAKH='" + kh.getMaKH() + "'";
-        System.out.println(updateSQL);
-        int kq = db.executeUpdate(updateSQL);
-        return kq;
-
+    public static KhachHang update(KhachHang kh) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "UPDATE KHACHHANG SET TENDN=?, VAITRO=?, HOTEN=?, SODT=?, EMAIL=? OUTPUT Inserted.* WHERE MAKH=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, kh.getTenDN());
+            ps.setString(2, kh.getVaiTro());
+            ps.setString(3, kh.getHoTen());
+            ps.setString(5, kh.getSoDT());
+            ps.setString(6, kh.getEmail());
+            ps.setString(7, Integer.toString(kh.getMaKH()));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang newkh = new KhachHang();
+                newkh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
+                newkh.setEmail(rs.getString("EMAIL"));
+                newkh.setHoTen(rs.getString("HOTEN"));
+                newkh.setSoDT(rs.getString("SODT"));
+                newkh.setTenDN(rs.getString("TENDN"));
+                newkh.setVaiTro(rs.getString("VAITRO"));
+                newkh.setMatKhau(rs.getString("MATKHAU"));
+                return newkh;
+            }
+        }
+        return null;
     }
 
-    public static int delete(KhachHang kh) throws SQLException {
-        JDBC db = new JDBC();
-        String deleteSQL = "DELETE FROM KHACHHANG"
-                + "WHERE MAKH='" + kh.getMaKH() + "'";
-        System.out.println(deleteSQL);
-        int kq = db.executeUpdate(deleteSQL);
-        return kq;
+    public static KhachHang delete(KhachHang kh) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "DELETE FROM KHACHHANG OUTPUT Deleted.* WHERE MAKH=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, Integer.toString(kh.getMaKH()));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang newkh = new KhachHang();
+                newkh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
+                newkh.setEmail(rs.getString("EMAIL"));
+                newkh.setHoTen(rs.getString("HOTEN"));
+                newkh.setSoDT(rs.getString("SODT"));
+                newkh.setTenDN(rs.getString("TENDN"));
+                newkh.setVaiTro(rs.getString("VAITRO"));
+                newkh.setMatKhau(rs.getString("MATKHAU"));
+                return newkh;
+            }
+        }
+        return null;
     }
 
-    public static ResultSet selectAll() throws SQLException {
+    public static ArrayList<KhachHang> selectAll() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
-        return rs;
+        ArrayList<KhachHang> list_kh = new ArrayList<>();
+        KhachHang newkh = new KhachHang();
+        while (rs.next()) {
+            newkh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
+            newkh.setEmail(rs.getString("EMAIL"));
+            newkh.setHoTen(rs.getString("HOTEN"));
+            newkh.setSoDT(rs.getString("SODT"));
+            newkh.setTenDN(rs.getString("TENDN"));
+            newkh.setVaiTro(rs.getString("VAITRO"));
+            newkh.setMatKhau(rs.getString("MATKHAU"));
+            list_kh.add(newkh);
+        }
+        return  list_kh;
     }
 
     public static KhachHang selectByTenDN(String tendn) throws SQLException {
@@ -76,7 +119,7 @@ public class KhachHangDAO {
             KhachHang kh = new KhachHang();
             kh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
             kh.setEmail(rs.getString("EMAIL"));
-            kh.setTenKH(rs.getString("HOTEN"));
+            kh.setHoTen(rs.getString("HOTEN"));
             kh.setSoDT(rs.getString("SODT"));
             kh.setTenDN(rs.getString("TENDN"));
             kh.setVaiTro(rs.getString("VAITRO"));

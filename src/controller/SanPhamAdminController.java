@@ -24,7 +24,7 @@ public class SanPhamAdminController {
 
     public void loadData(JTable tblSanPham) {
         // Thay đổi đường dẫn tương đối của máy tính bạn đến chương trình JAVA ở đây
-        String path = "C:\\Users\\A715-42G\\Documents\\NetBeansProjects\\QLDH\\src\\";
+        String path = ".\\";
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         Object[] column = new Object[]{"Mã SP", "Tên SP", "Mô tả", "Đơn giá", "Số lượng tồn kho", "Hình ảnh", "Loại"};
         model.setColumnIdentifiers(column);

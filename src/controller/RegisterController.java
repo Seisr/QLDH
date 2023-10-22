@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import model.KhachHang;
 import view.LoginView;
 import view.RegisterView;
+import view.UserView;
 
 /**
  *
@@ -63,7 +64,7 @@ public class RegisterController {
         Matcher mtcEmail = ptEmail.matcher(model.getEmail());
         Matcher mtcPass = ptPass.matcher(model.getMatKhau());
         Matcher mtcPhone = ptPhone.matcher(model.getSoDT());
-        Matcher mtcName = ptName.matcher(model.getTenKH());
+        Matcher mtcName = ptName.matcher(model.getHoTen());
         Matcher mtcCPass = ptCPass.matcher(cMatKhau);
 
         boolean valName = mtcName.find();
@@ -104,14 +105,14 @@ public class RegisterController {
             System.out.println("Input ko hợp lệ");
         } else {
             try {
-                int maKH = KhachHangDAO.insert(model);
+                int maKH = KhachHangDAO.insert(model).getMaKH();
                 try (PrintWriter writer = new PrintWriter("mydata.ser")) {
                     writer.println(maKH);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-                LoginView l = new LoginView();
+                UserView l = new UserView();
                 l.setVisible(true);
                 view.setVisible(false);
             } catch (SQLException ex) {
