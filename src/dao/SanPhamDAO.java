@@ -4,69 +4,96 @@
  */
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.SanPham;
+import java.util.*;
 
 /**
  *
  * @author A715-42G
  */
 public class SanPhamDAO  {
-       public static int insert(SanPham sp) throws SQLException {
-
-        JDBC db = new JDBC();
-        String insertSQL = "INSERT INTO SANPHAM VALUES('"
-//                + sp.getMaSP() + "',N'"
-                + sp.getTenSP() + "',N'"
-                + sp.getMoTa() + "','"
-                + sp.getDonGia() + "','"
-                + sp.getSoLuongTonKho() + "',N'"
-                + sp.getHinhAnh() + "',N'"
-                + sp.getLoai() + "') ";
-                System.out.println(insertSQL);
-        int kq = db.executeUpdate(insertSQL);
-//        db.close();
-        return kq;
+    private static ArrayList<SanPham> parse_obj (ResultSet rs) throws SQLException{
+        ArrayList<SanPham> list_sp = new ArrayList();
+        while (rs.next()) {
+            list_sp.add(
+                new SanPham(
+                    Integer.valueOf(rs.getString("MASP")),
+                    rs.getString("TENSP"),
+                    rs.getString("MOTA"),
+                    Integer.valueOf(rs.getString("DONGIA")),
+                    Integer.parseInt(rs.getString("SLTONKHO")),
+                    rs.getString("HINHANH"),
+                    rs.getString("LOAI")
+                )
+            );
+        }
+        return  list_sp;
     }
 
-    public static int update(SanPham sp) throws SQLException {
-        JDBC db = new JDBC();
-        String updateSQL = "UPDATE SANPHAM"
-//                + " SET MASP=N'" + sp.getMaSP() + "'"
-                + " SET TENSP=N'" + sp.getTenSP() + "'"
-                + ",MOTA=N'" + sp.getMoTa() + "'"
-                + ",DONGIA='" + sp.getDonGia() + "'"
-                + ",SLTONKHO='" + sp.getSoLuongTonKho() + "'"
-                + ",HINHANH=N'" + sp.getHinhAnh() + "'"
-                + ",LOAI=N'" + sp.getHinhAnh() + "'"
-                + "WHERE MASP='" + sp.getMaSP() + "'";
-        System.out.println(updateSQL);
-        int kq = db.executeUpdate(updateSQL);
-//        db.close();
-        return kq;
+    public static SanPham insert(SanPham sp) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "INSERT INTO SANPHAM OUTPUT Inserted.* VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, sp.getTenSP());
+            ps.setString(2, sp.getMoTa());
+            ps.setInt(3,sp.getDonGia());
+            ps.setInt(4,sp.getSoLuongTonKho());
+            ps.setString(5, sp.getHinhAnh());
+            ps.setString(6, sp.getLoai());
+            ResultSet rs = ps.executeQuery();
+            return parse_obj(rs).get(0);
+        }
     }
 
-    public static int delete(int MASP) throws SQLException {
-        JDBC db = new JDBC();
-        String deleteSQL = "DELETE FROM SANPHAM"
-                + " WHERE MASP='" + MASP + "'";
-        int kq = db.executeUpdate(deleteSQL);
-//        db.close();
-        return kq;
+    public static SanPham update(SanPham sp) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "UPDATE SANPHAM SET TENSP=?, MOTA=?, DONGIA=?, SLTONKHO=?, HINHANH=?, LOAI=? OUTPUT Inserted.* WHERE MASP=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, sp.getTenSP());
+            ps.setString(2, sp.getMoTa());
+            ps.setInt(3,sp.getDonGia());
+            ps.setInt(4,sp.getSoLuongTonKho());
+            ps.setString(5, sp.getHinhAnh());
+            ps.setString(6, sp.getLoai());
+            ps.setString(7, String.valueOf(sp.getMaSP()));
+            ResultSet rs = ps.executeQuery();
+            return parse_obj(rs).get(0);
+        }
     }
 
-    public static ResultSet selectAll() throws SQLException {
-        JDBC db = new JDBC();
-        ResultSet rs = db.executeQuery("SELECT * FROM SANPHAM");
-//        db.close();
-        return rs;
+    public static SanPham delete(int MASP) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "DELETE FROM SANPHAM OUTPUT Deleted.* WHERE MASP=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, Integer.toString(MASP));
+            ResultSet rs = ps.executeQuery();
+            return parse_obj(rs).get(0);
+        }
     }
 
-    public static ResultSet selectByMaSP(int MASP) throws SQLException {
-        JDBC db = new JDBC();
-        ResultSet rs = db.executeQuery("SELECT * FROM SANPHAM WHERE MASP='"+MASP+"'");
-        db.close();
-        return rs;
+    public static ArrayList<SanPham> selectAll(String loai) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "SELECT * FROM SANPHAM WHERE 1=1";
+            if (!loai.isBlank()) {
+                sql += " AND LOAI='" + loai + "'";
+            }
+            PreparedStatement ps = connection.prepareCall(sql);
+            ResultSet rs = ps.executeQuery();
+            return parse_obj(rs);
+        }
+    }
+
+    public static SanPham selectByMaSP(int MASP) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "SELECT * FROM SANPHAM WHERE MASP=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setInt(1, MASP);
+            ResultSet rs = ps.executeQuery();
+            return parse_obj(rs).get(0);
+        }
     }
 }

@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import model.KhachHang;
 import view.RegisterView;
-import view.UserView;
+import view.HomeView;
 
 /**
  *
@@ -104,14 +104,15 @@ public class RegisterController {
             System.out.println("Input ko hợp lệ");
         } else {
             try {
-                int maKH = KhachHangDAO.insert(model).getMaKH();
+                KhachHang kh = KhachHangDAO.insert(model);
                 try (PrintWriter writer = new PrintWriter("mydata.ser")) {
-                    writer.println(maKH);
+                    writer.println(kh.getMaKH());
+                    writer.println(kh.getVaiTro());
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-                UserView l = new UserView();
+                HomeView l = new HomeView();
                 l.setVisible(true);
                 view.setVisible(false);
             } catch (SQLException ex) {
