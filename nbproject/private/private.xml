@@ -7,6 +7,21 @@
             <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/view/HomeView.java</file>
             <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/controller/LoginController.java</file>
             <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/controller/BarController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/LoginController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/RegisterController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/KhachHangView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/UserView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/JDBC.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/SanPhamDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/AdminView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/KhachHangDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/GioHangDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/SanPhamAdminView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/model/Bar.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/LoginView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/BarController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/SanPhamAdminController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/RegisterView.java</file>
         </group>
     </open-files>
 </project-private>
