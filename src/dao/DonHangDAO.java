@@ -77,9 +77,9 @@ public class DonHangDAO {
         }
     }
 
-    public static DonHang updateTrangThai(Integer maKH, Integer maDH, TrangThaiDH trangThai) throws SQLException {
+    public static DonHang updateTrangThai(Integer maDH, TrangThaiDH trangThai) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
-            String sql = "UPDATE DONHANG SET TRANGTHAI=? OUTPUT Inserted.* WHERE MADONHANG=?, MAKH=?";
+            String sql = "UPDATE DONHANG SET TRANGTHAI=? OUTPUT Inserted.* WHERE MADONHANG=?";
             PreparedStatement ps = connection.prepareCall(sql);
             String tt = switch (trangThai) {
                 case DAHOANTHANH ->
@@ -91,7 +91,6 @@ public class DonHangDAO {
             };
             ps.setString(1, tt);
             ps.setInt(2, maDH);
-            ps.setInt(3, maKH);
             ResultSet rs = ps.executeQuery();
             return parse_obj(rs).get(0);
         }
@@ -147,10 +146,22 @@ public class DonHangDAO {
     }
     
     
+    
+    
     public static ResultSet selectByMaKH(int maKH) throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG WHERE MAKH="+maKH);
         return rs;
+    }
+    
+    public static DonHang selectByMaDH(int MADH) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "SELECT * FROM DONHANG WHERE MADONHANG=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setInt(1, MADH);
+            ResultSet rs = ps.executeQuery();
+            return parse_obj(rs).get(0);
+        }
     }
 
     public static ArrayList<DonHang> selectByMaKH(Integer maKH, TrangThaiDH trangThai) throws SQLException {

@@ -7,7 +7,12 @@ package view;
 import dao.DonHangDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import model.DonHang;
+import model.TrangThaiDH;
+import static model.TrangThaiDH.DANGXULY;
 
 /**
  *
@@ -35,6 +40,7 @@ public class DonHangView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDonHang = new javax.swing.JTable();
+        updateStatusBtn = new javax.swing.JButton();
 
         jLabel1.setText("Đơn hàng");
 
@@ -51,6 +57,13 @@ public class DonHangView extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblDonHang);
 
+        updateStatusBtn.setText("Cập nhật trạng thái");
+        updateStatusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateStatusBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,27 +72,55 @@ public class DonHangView extends javax.swing.JPanel {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(361, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateStatusBtn)))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(updateStatusBtn)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusBtnActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        int[] list = tblDonHang.getSelectedRows();
+        for (int i : list) {
+            int maDH = Integer.parseInt(tblDonHang.getValueAt(i, 0).toString());
+            DonHang dh;
+            try {
+                dh = DonHangDAO.selectByMaDH(maDH);
+                switch(dh.getTrangThai()){
+                    case DANGXULY -> DonHangDAO.updateTrangThai(maDH, TrangThaiDH.DANGGIAOHANG);
+                    case DANGGIAOHANG -> DonHangDAO.updateTrangThai(maDH, TrangThaiDH.DAHOANTHANH);
+                    default -> {}
+                }
+                loadData();
+            } catch (SQLException ex) {
+                Logger.getLogger(DonHangView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_updateStatusBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDonHang;
+    private javax.swing.JButton updateStatusBtn;
     // End of variables declaration//GEN-END:variables
-private void loadData() throws SQLException {
+    private void loadData() throws SQLException {
         DefaultTableModel model1 = (DefaultTableModel) tblDonHang.getModel();
         Object[] column = new Object[]{"Mã đơn hàng", "Mã khách hàng", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tổng tiền"};
         model1.setColumnIdentifiers(column);
@@ -92,9 +133,8 @@ private void loadData() throws SQLException {
             String diaChi = rs.getString("DIACHI");
             String trangThai = rs.getString("TRANGTHAI");
             String tongTien = rs.getString("TONGTIEN");
-            Object[] row = {maDH, maKH, Sdt, diaChi, trangThai,tongTien};
+            Object[] row = {maDH, maKH, Sdt, diaChi, trangThai, tongTien};
             model1.addRow(row);
         }
     }
-
 }
