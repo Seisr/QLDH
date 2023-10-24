@@ -4,7 +4,6 @@
  */
 package view;
 
-import controller.GioHangController;
 import dao.DonHangDAO;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,10 +12,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.DonHang;
 
 /**
  *
@@ -25,7 +22,6 @@ import model.DonHang;
 public class DonHangUserView extends javax.swing.JPanel {
 
     private int maKH = 0;
-//    private String vaiTro = "";
 
     /**
      * Creates new form DonHangView
@@ -105,7 +101,6 @@ public class DonHangUserView extends javax.swing.JPanel {
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         // TODO add your handling code here:
-//        loadData();
     }//GEN-LAST:event_btnLoadActionPerformed
 
 
@@ -118,17 +113,13 @@ public class DonHangUserView extends javax.swing.JPanel {
 private void loadData() throws SQLException {
         try (BufferedReader reader = new BufferedReader(new FileReader("mydata.ser"))) {
             maKH = Integer.parseInt(reader.readLine());
-//            vaiTro = reader.readLine();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
-//       DefaultTableModel dtm = new DefaultTableModel();
         DefaultTableModel model1 = (DefaultTableModel) tblDonHang.getModel();
-//        Object[] column = new Object[]{"Mã Khách hàng", "Tên đăng nhập", "Vai trò", "Họ tên", "Số điện thoại", "Email"};
         Object[] column = new Object[]{"Mã đơn hàng", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tổng tiền"};
-
         model1.setColumnIdentifiers(column);
         ResultSet rs = DonHangDAO.selectByMaKH(maKH);
         model1.setRowCount(0);
@@ -138,32 +129,9 @@ private void loadData() throws SQLException {
             String diaChi = rs.getString("DIACHI");
             String trangThai = rs.getString("TRANGTHAI");
             String tongTien = rs.getString("TONGTIEN");
-//            String email = rs.getString("EMAIL");
-//            Object[] row = {maKH, tenDN, vaiTro, hoTen, soDT, email};
             Object[] row = {maDH, Sdt, diaChi, trangThai, tongTien};
             model1.addRow(row);
         }
-
-//    public void loadData() {
-//        DefaultTableModel model = (DefaultTableModel) tblDonHang.getModel();
-//        Object[] column = new Object[]{"Mã đơn hàng", "Mã giỏ hàng", "Mã khách hàng", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tổng tiền"};
-//        model.setColumnIdentifiers(column);
-//        try {
-//            ArrayList<DonHang> list_dh = DonHangDAO.selectAll();
-//            model.setRowCount(0);
-//            for (DonHang dh : list_dh) {
-//                int maDH = dh.getMaDH();
-//                int maKH = dh.getMaKH();
-//                String Sdt = dh.getSdt();
-//                String diaChi = dh.getDiachi();
-//                double tongTien = dh.getTongTien();
-//                Object[] row = {maDH, maKH, Sdt, diaChi, tongTien};
-//                model.addRow(row);
-//            }
-//        }
-//        
-//    catch (SQLException e) {
-//        }
     }
 
 }

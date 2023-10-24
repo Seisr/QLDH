@@ -7,7 +7,6 @@ package view;
 import dao.KhachHangDAO;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import model.KhachHang;
 import java.sql.ResultSet;
 
 /**
@@ -84,7 +83,6 @@ public class KhachHangView extends javax.swing.JPanel {
     private javax.swing.JTable tblKhachHang;
     // End of variables declaration//GEN-END:variables
 private void loadData() throws SQLException {
-//       DefaultTableModel dtm = new DefaultTableModel();
         DefaultTableModel model1 = (DefaultTableModel) tblKhachHang.getModel();
         Object[] column = new Object[]{"Mã Khách hàng", "Tên đăng nhập", "Vai trò", "Họ tên", "Số điện thoại", "Email"};
         model1.setColumnIdentifiers(column);
@@ -100,10 +98,6 @@ private void loadData() throws SQLException {
                 Object[] row = {maKH, tenDN, vaiTro, hoTen, soDT, email};
                 model1.addRow(row);
             }
-//            ArrayList<KhachHang> list_kh = KhachHangDAO.selectAll();
-
-//            for (KhachHang kh : list_kh) {
-
         }
 }
 

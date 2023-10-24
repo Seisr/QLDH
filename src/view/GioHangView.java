@@ -5,7 +5,6 @@
 package view;
 
 import controller.GioHangController;
-import controller.SanPhamController;
 import dao.DonHangDAO;
 import dao.GioHangDAO;
 import java.io.BufferedReader;
