@@ -91,7 +91,7 @@ public class KhachHangDAO {
         return null;
     }
 
-    public static ArrayList<KhachHang> selectAll() throws SQLException {
+    public static ArrayList<KhachHang> selectAll1() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
         ArrayList<KhachHang> list_kh = new ArrayList<>();
@@ -106,7 +106,15 @@ public class KhachHangDAO {
             newkh.setMatKhau(rs.getString("MATKHAU"));
             list_kh.add(newkh);
         }
-        return  list_kh;
+        System.out.println(list_kh);
+        return list_kh;
+    }
+    
+    public static ResultSet selectAll() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
+//        db.close();
+        return rs;
     }
 
     public static KhachHang selectByTenDN(String tendn) throws SQLException {

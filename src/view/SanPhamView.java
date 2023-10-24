@@ -54,9 +54,10 @@ public class SanPhamView extends javax.swing.JPanel {
             case "guest" -> {
                 btnSua.setVisible(false);
                 btnThem.setVisible(false);
-                btnThemgiohang.setEnabled(false);
+                btnThemGioHang.setEnabled(false);
                 txtSoluong.setEnabled(false);
                 btnXoa.setVisible(false);
+                
             }
             case "user" -> {
                 btnSua.setVisible(false);
@@ -65,7 +66,7 @@ public class SanPhamView extends javax.swing.JPanel {
             }
             default -> //admin
             {
-                btnThemgiohang.setVisible(false);
+                btnThemGioHang.setVisible(false);
                 labelSoluong.setVisible(false);
                 txtSoluong.setVisible(false);
             }
@@ -106,7 +107,7 @@ public class SanPhamView extends javax.swing.JPanel {
         btnLoad = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        btnThemgiohang = new javax.swing.JButton();
+        btnThemGioHang = new javax.swing.JButton();
         txtHinhAnh = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
@@ -209,13 +210,13 @@ public class SanPhamView extends javax.swing.JPanel {
         });
         add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 429, -1, -1));
 
-        btnThemgiohang.setText("Add to cart");
-        btnThemgiohang.addActionListener(new java.awt.event.ActionListener() {
+        btnThemGioHang.setText("Add to cart");
+        btnThemGioHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemgiohangActionPerformed(evt);
+                btnThemGioHangActionPerformed(evt);
             }
         });
-        add(btnThemgiohang, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, -1, -1));
+        add(btnThemGioHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, -1, -1));
         add(txtHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 368, 101, -1));
 
         jLabel11.setText("Hình ảnh");
@@ -268,7 +269,7 @@ public class SanPhamView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
-    private void btnThemgiohangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemgiohangActionPerformed
+    private void btnThemGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHangActionPerformed
         try {
             // TODO add your handling code here:
 //        int maSP = Integer.parseInt(txtMaSP.getText());
@@ -276,11 +277,11 @@ public class SanPhamView extends javax.swing.JPanel {
             int maSP = Integer.parseInt(txtMaSP.getText());
             Integer donGia = Integer.valueOf(txtDonGia.getText());
             GioHangDAO.insert(maKH, maSP, qty, donGia);
-            JOptionPane.showMessageDialog(null, "Da them san pham vao gio hang");
+            JOptionPane.showMessageDialog(null, "Đã thêm sản phẩm vào giỏ hàng");
         } catch (SQLException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnThemgiohangActionPerformed
+    }//GEN-LAST:event_btnThemGioHangActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
         // TODO add your handling code here:
@@ -316,7 +317,7 @@ public class SanPhamView extends javax.swing.JPanel {
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnThemgiohang;
+    private javax.swing.JButton btnThemGioHang;
     private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

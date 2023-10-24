@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -27,7 +27,7 @@ import model.TrangThaiDH;
 public class GioHangView extends javax.swing.JPanel {
     private int maKH = 0;
     private String vaiTro = "";
-    private GioHangController spac = new GioHangController();
+    private GioHangController ghac = new GioHangController();
 
     /**
      * Creates new form GioHangView
@@ -42,8 +42,8 @@ public class GioHangView extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Integer total = spac.loadData(listgiohang, maKH);
-        totalLabel.setText(total.toString());
+        Integer total = ghac.loadData(listgiohang, maKH);
+        jlbTotal.setText(total.toString());
     }
 
     /**
@@ -58,20 +58,20 @@ public class GioHangView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listgiohang = new javax.swing.JList<>();
-        addressLabel = new javax.swing.JTextField();
+        txtDiaChi = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        taoDHBtn = new javax.swing.JButton();
-        totalLabel = new javax.swing.JLabel();
-        sdtLabel = new javax.swing.JTextField();
+        btnTaoDonHang = new javax.swing.JButton();
+        jlbTotal = new javax.swing.JLabel();
+        txtSoDT = new javax.swing.JTextField();
 
         jLabel1.setText("Gio Hang");
 
         jScrollPane1.setViewportView(listgiohang);
 
-        addressLabel.addActionListener(new java.awt.event.ActionListener() {
+        txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addressLabelActionPerformed(evt);
+                txtDiaChiActionPerformed(evt);
             }
         });
 
@@ -79,18 +79,18 @@ public class GioHangView extends javax.swing.JPanel {
 
         jLabel3.setText("SDT");
 
-        taoDHBtn.setText("Tao don hang");
-        taoDHBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnTaoDonHang.setText("Tao don hang");
+        btnTaoDonHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taoDHBtnActionPerformed(evt);
+                btnTaoDonHangActionPerformed(evt);
             }
         });
 
-        totalLabel.setText("jLabel4");
+        jlbTotal.setText("0");
 
-        sdtLabel.addActionListener(new java.awt.event.ActionListener() {
+        txtSoDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sdtLabelActionPerformed(evt);
+                txtSoDTActionPerformed(evt);
             }
         });
 
@@ -99,25 +99,21 @@ public class GioHangView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(sdtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(185, 185, 185))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(totalLabel)
-                            .addGap(205, 205, 205)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(taoDHBtn)
-                        .addGap(107, 107, 107))))
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jlbTotal)
+                            .addComponent(btnTaoDonHang)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtSoDT, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                                .addComponent(txtDiaChi, javax.swing.GroupLayout.Alignment.LEADING)))))
+                .addGap(0, 158, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel1)
@@ -135,59 +131,60 @@ public class GioHangView extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(sdtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(totalLabel)
+                        .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(taoDHBtn)))
+                        .addComponent(jlbTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTaoDonHang)
+                        .addGap(0, 58, Short.MAX_VALUE)))
                 .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addressLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressLabelActionPerformed
+    private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addressLabelActionPerformed
+    }//GEN-LAST:event_txtDiaChiActionPerformed
 
-    private void taoDHBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taoDHBtnActionPerformed
+    private void btnTaoDonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonHangActionPerformed
         try {
             // TODO add your handling code here:
-            ArrayList<Integer> maGHs = spac.getMaDH(maKH);
+            ArrayList<Integer> maGHs = ghac.getMaDH(maKH);
             DonHang dh = new DonHang();
-            dh.setDiachi(addressLabel.getText());
+            dh.setDiachi(txtDiaChi.getText());
             dh.setMaGH(maGHs);
             dh.setMaKH(maKH);
-            dh.setSdt(sdtLabel.getText());
-            dh.setTongTien(Integer.parseInt(totalLabel.getText()));
+            dh.setSdt(txtSoDT.getText());
+            dh.setTongTien(Integer.parseInt(jlbTotal.getText()));
             dh.setTrangThai(TrangThaiDH.DANGXULY);
             DonHangDAO.insert(dh);
             for (Integer maGH : maGHs) {
                 GioHangDAO.updateTrangThai(maKH, maGH, Boolean.TRUE);
             }
             listgiohang.removeAll();
-            JOptionPane.showMessageDialog(null, "Tao don hang thành công");
+            JOptionPane.showMessageDialog(null, "Tạo đơn hàng thành công");
         } catch (SQLException ex) {
             Logger.getLogger(GioHangView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_taoDHBtnActionPerformed
+    }//GEN-LAST:event_btnTaoDonHangActionPerformed
 
-    private void sdtLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sdtLabelActionPerformed
+    private void txtSoDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoDTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sdtLabelActionPerformed
+    }//GEN-LAST:event_txtSoDTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField addressLabel;
+    private javax.swing.JButton btnTaoDonHang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlbTotal;
     public javax.swing.JList<GioHangChiTietView> listgiohang;
-    private javax.swing.JTextField sdtLabel;
-    private javax.swing.JButton taoDHBtn;
-    private javax.swing.JLabel totalLabel;
+    private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtSoDT;
     // End of variables declaration//GEN-END:variables
 }

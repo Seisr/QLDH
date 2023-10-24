@@ -21,15 +21,15 @@ import javax.swing.JPanel;
  *
  * @author A715-42G
  */
-public class HomeView extends javax.swing.JFrame {
+public class HomeAdminView extends javax.swing.JFrame {
 
     /**
      * Creates new form MainView
      */
-    private int maKH = 0;
-    private String vaiTro = "";
+    private int maKH = 1;
+    private String vaiTro = "admin";
 
-    public HomeView() throws SQLException {
+    public HomeAdminView() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Màn hình chính");
@@ -37,28 +37,9 @@ public class HomeView extends javax.swing.JFrame {
         barCon.setView("SanPham", jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();
         listItem.add(new Bar("SanPham", jpnSanPham, jlbSanPham));
-        listItem.add(new Bar("GioHang", jpnGioHang, jlbGioHang));
-        listItem.add(new Bar("DonHangUser", jpnDonHangUser, jlbDonHangUser));
-//        listItem.add(new Bar("KhachHang", jpnKhachHang, jlbKhachHang));
+        listItem.add(new Bar("DonHangAdmin", jpnDonHangAdmin, jlbDonHangAdmin));
+        listItem.add(new Bar("KhachHang", jpnKhachHang, jlbKhachHang));
         barCon.setEvent(listItem);
-        try (BufferedReader reader = new BufferedReader(new FileReader("mydata.ser"))) {
-            maKH = Integer.parseInt(reader.readLine());
-            vaiTro = reader.readLine();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        switch (vaiTro) {
-            case "guest" -> {
-                jpnGioHang.setVisible(false);
-                jpnDonHangUser.setVisible(false);
-                jpnKhachHang.setVisible(false);
-            }
-            case "user" -> {
-                jpnKhachHang.setVisible(false);
-            }
-        }
     }
 
     /**
@@ -76,10 +57,8 @@ public class HomeView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jpnSanPham = new javax.swing.JPanel();
         jlbSanPham = new javax.swing.JLabel();
-        jpnGioHang = new javax.swing.JPanel();
-        jlbGioHang = new javax.swing.JLabel();
-        jpnDonHangUser = new javax.swing.JPanel();
-        jlbDonHangUser = new javax.swing.JLabel();
+        jpnDonHangAdmin = new javax.swing.JPanel();
+        jlbDonHangAdmin = new javax.swing.JLabel();
         jlbNhom = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         jpnKhachHang = new javax.swing.JPanel();
@@ -89,6 +68,7 @@ public class HomeView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1060, 590));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpnRoot.setMaximumSize(new java.awt.Dimension(1050, 554));
@@ -146,58 +126,30 @@ public class HomeView extends javax.swing.JFrame {
 
         jpnBar.add(jpnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 163, -1));
 
-        jpnGioHang.setPreferredSize(new java.awt.Dimension(158, 74));
-        jpnGioHang.setVerifyInputWhenFocusTarget(false);
+        jlbDonHangAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/order-delivery.png"))); // NOI18N
+        jlbDonHangAdmin.setText("Đơn hàng");
+        jlbDonHangAdmin.setMaximumSize(new java.awt.Dimension(73, 16));
+        jlbDonHangAdmin.setMinimumSize(new java.awt.Dimension(73, 16));
+        jlbDonHangAdmin.setPreferredSize(new java.awt.Dimension(73, 16));
 
-        jlbGioHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cart.png"))); // NOI18N
-        jlbGioHang.setText("Giỏ hàng");
-        jlbGioHang.setMaximumSize(new java.awt.Dimension(73, 16));
-        jlbGioHang.setMinimumSize(new java.awt.Dimension(73, 16));
-        jlbGioHang.setPreferredSize(new java.awt.Dimension(73, 16));
-
-        javax.swing.GroupLayout jpnGioHangLayout = new javax.swing.GroupLayout(jpnGioHang);
-        jpnGioHang.setLayout(jpnGioHangLayout);
-        jpnGioHangLayout.setHorizontalGroup(
-            jpnGioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnGioHangLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jlbGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-        jpnGioHangLayout.setVerticalGroup(
-            jpnGioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnGioHangLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jlbGioHang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
-        );
-
-        jpnBar.add(jpnGioHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 163, -1));
-
-        jlbDonHangUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/order-delivery.png"))); // NOI18N
-        jlbDonHangUser.setText("Đơn hàng");
-        jlbDonHangUser.setMaximumSize(new java.awt.Dimension(73, 16));
-        jlbDonHangUser.setMinimumSize(new java.awt.Dimension(73, 16));
-        jlbDonHangUser.setPreferredSize(new java.awt.Dimension(73, 16));
-
-        javax.swing.GroupLayout jpnDonHangUserLayout = new javax.swing.GroupLayout(jpnDonHangUser);
-        jpnDonHangUser.setLayout(jpnDonHangUserLayout);
-        jpnDonHangUserLayout.setHorizontalGroup(
-            jpnDonHangUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangUserLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpnDonHangAdminLayout = new javax.swing.GroupLayout(jpnDonHangAdmin);
+        jpnDonHangAdmin.setLayout(jpnDonHangAdminLayout);
+        jpnDonHangAdminLayout.setHorizontalGroup(
+            jpnDonHangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangAdminLayout.createSequentialGroup()
                 .addContainerGap(46, Short.MAX_VALUE)
-                .addComponent(jlbDonHangUser, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbDonHangAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
-        jpnDonHangUserLayout.setVerticalGroup(
-            jpnDonHangUserLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangUserLayout.createSequentialGroup()
+        jpnDonHangAdminLayout.setVerticalGroup(
+            jpnDonHangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangAdminLayout.createSequentialGroup()
                 .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jlbDonHangUser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbDonHangAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
-        jpnBar.add(jpnDonHangUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, 163, -1));
+        jpnBar.add(jpnDonHangAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, 163, -1));
 
         jlbNhom.setForeground(new java.awt.Color(255, 255, 255));
         jlbNhom.setText("Nhóm 3 - KhaTrang");
@@ -234,7 +186,7 @@ public class HomeView extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jpnBar.add(jpnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 320, 163, 74));
+        jpnBar.add(jpnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 163, 74));
 
         jpnRoot.add(jpnBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 554));
 
@@ -282,14 +234,30 @@ public class HomeView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeAdminView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -311,9 +279,9 @@ public class HomeView extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new HomeView().setVisible(true);
+                    new HomeAdminView().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(HomeAdminView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -324,14 +292,12 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel jlbDonHangUser;
-    private javax.swing.JLabel jlbGioHang;
+    private javax.swing.JLabel jlbDonHangAdmin;
     private javax.swing.JLabel jlbKhachHang;
     private javax.swing.JLabel jlbNhom;
     private javax.swing.JLabel jlbSanPham;
     private javax.swing.JPanel jpnBar;
-    private javax.swing.JPanel jpnDonHangUser;
-    private javax.swing.JPanel jpnGioHang;
+    private javax.swing.JPanel jpnDonHangAdmin;
     private javax.swing.JPanel jpnKhachHang;
     private javax.swing.JPanel jpnRoot;
     private javax.swing.JPanel jpnSanPham;

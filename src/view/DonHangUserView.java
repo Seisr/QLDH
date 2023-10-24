@@ -4,23 +4,34 @@
  */
 package view;
 
+import controller.GioHangController;
 import dao.DonHangDAO;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.DonHang;
 
 /**
  *
  * @author A715-42G
  */
-public class DonHangView extends javax.swing.JPanel {
+public class DonHangUserView extends javax.swing.JPanel {
+
+    private int maKH = 0;
+//    private String vaiTro = "";
 
     /**
      * Creates new form DonHangView
      */
-    public DonHangView() throws SQLException {
+    public DonHangUserView() throws SQLException {
+
         initComponents();
         loadData();
     }
@@ -105,24 +116,31 @@ public class DonHangView extends javax.swing.JPanel {
     private javax.swing.JTable tblDonHang;
     // End of variables declaration//GEN-END:variables
 private void loadData() throws SQLException {
+        try (BufferedReader reader = new BufferedReader(new FileReader("mydata.ser"))) {
+            maKH = Integer.parseInt(reader.readLine());
+//            vaiTro = reader.readLine();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
+        }
 //       DefaultTableModel dtm = new DefaultTableModel();
         DefaultTableModel model1 = (DefaultTableModel) tblDonHang.getModel();
 //        Object[] column = new Object[]{"Mã Khách hàng", "Tên đăng nhập", "Vai trò", "Họ tên", "Số điện thoại", "Email"};
-        Object[] column = new Object[]{"Mã đơn hàng", "Mã khách hàng", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tổng tiền"};
+        Object[] column = new Object[]{"Mã đơn hàng", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tổng tiền"};
 
         model1.setColumnIdentifiers(column);
-        ResultSet rs = DonHangDAO.selectAll();
+        ResultSet rs = DonHangDAO.selectByMaKH(maKH);
         model1.setRowCount(0);
         while (rs.next()) {
             String maDH = rs.getString("MADONHANG");
-            String maKH = rs.getString("MAKH");
             String Sdt = rs.getString("SODT");
             String diaChi = rs.getString("DIACHI");
             String trangThai = rs.getString("TRANGTHAI");
             String tongTien = rs.getString("TONGTIEN");
 //            String email = rs.getString("EMAIL");
 //            Object[] row = {maKH, tenDN, vaiTro, hoTen, soDT, email};
-            Object[] row = {maDH, maKH, Sdt, diaChi, trangThai,tongTien};
+            Object[] row = {maDH, Sdt, diaChi, trangThai, tongTien};
             model1.addRow(row);
         }
 

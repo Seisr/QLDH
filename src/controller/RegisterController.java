@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import model.KhachHang;
 import view.RegisterView;
-import view.HomeView;
+import view.LoginView;
 
 /**
  *
@@ -112,7 +112,7 @@ public class RegisterController {
                     Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 JOptionPane.showMessageDialog(null, "Đăng ký thành công", "Đăng ký thành công", JOptionPane.PLAIN_MESSAGE);
-                HomeView l = new HomeView();
+                LoginView l = new LoginView();
                 l.setVisible(true);
                 view.setVisible(false);
             } catch (SQLException ex) {

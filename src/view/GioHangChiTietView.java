@@ -37,8 +37,6 @@ public class GioHangChiTietView extends javax.swing.JPanel {
         totalLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         totalLabel.setText("jLabel1");
 
-        imageLabel.setText("jLabel1");
-
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         nameLabel.setText("jLabel1");
 
@@ -73,20 +71,21 @@ public class GioHangChiTietView extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalLabel)
-                    .addComponent(nameLabel))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(qtyLabel)
-                    .addComponent(jLabel3)
-                    .addComponent(priceLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalLabel)
+                            .addComponent(nameLabel))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(qtyLabel)
+                            .addComponent(jLabel3)
+                            .addComponent(priceLabel)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(imageLabel)))
                 .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imageLabel)
-                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

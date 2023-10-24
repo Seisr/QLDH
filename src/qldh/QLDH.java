@@ -4,6 +4,8 @@
  */
 package qldh;
 
+import java.sql.SQLException;
+import view.DonHangView;
 import view.LoginView;
 
 /**
@@ -15,10 +17,12 @@ public class QLDH {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         LoginView login = new LoginView();
         login.setVisible(true);
+//        DonHangView dhv = new DonHangView();
+//        dhv.setVisible(true);
     }
     
 }

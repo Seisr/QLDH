@@ -4,6 +4,12 @@
  */
 package view;
 
+import dao.KhachHangDAO;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import model.KhachHang;
+import java.sql.ResultSet;
+
 /**
  *
  * @author A715-42G
@@ -13,8 +19,9 @@ public class KhachHangView extends javax.swing.JPanel {
     /**
      * Creates new form KhachHangView
      */
-    public KhachHangView() {
+    public KhachHangView() throws SQLException {
         initComponents();
+        loadData();
     }
 
     /**
@@ -27,29 +34,79 @@ public class KhachHangView extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblKhachHang = new javax.swing.JTable();
 
         jLabel1.setText("KhachHang");
+
+        tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblKhachHang);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(jLabel1)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblKhachHang;
     // End of variables declaration//GEN-END:variables
+private void loadData() throws SQLException {
+//       DefaultTableModel dtm = new DefaultTableModel();
+        DefaultTableModel model1 = (DefaultTableModel) tblKhachHang.getModel();
+        Object[] column = new Object[]{"Mã Khách hàng", "Tên đăng nhập", "Vai trò", "Họ tên", "Số điện thoại", "Email"};
+        model1.setColumnIdentifiers(column);
+            ResultSet rs = KhachHangDAO.selectAll();
+            model1.setRowCount(0);
+            while(rs.next()){
+                String maKH = rs.getString("MAKH");
+                String tenDN = rs.getString("TENDN");
+                String vaiTro = rs.getString("VAITRO");
+                String hoTen = rs.getString("HOTEN");
+                String soDT = rs.getString("SODT");
+                String email = rs.getString("EMAIL");
+                Object[] row = {maKH, tenDN, vaiTro, hoTen, soDT, email};
+                model1.addRow(row);
+            }
+//            ArrayList<KhachHang> list_kh = KhachHangDAO.selectAll();
+
+//            for (KhachHang kh : list_kh) {
+
+        }
 }
+
+    
+
+

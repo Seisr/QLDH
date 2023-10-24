@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.KhachHang;
-import view.HomeView;
+import view.HomeAdminView;
 import view.LoginView;
 import view.HomeView;
 
@@ -24,12 +24,12 @@ public class LoginController {
 
     private LoginView view = new LoginView();
 
-    public void login(String user,String pass) throws FileNotFoundException {
+    public void login(String user, String pass) throws FileNotFoundException {
 
         try {
             KhachHang kh = KhachHangDAO.selectByTenDN(user);
             if (kh == null) {
-                JOptionPane.showMessageDialog(null, "User ko ton tai", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "User không tồn tại", "Thất bại", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (!kh.getMatKhau().equals(pass)) {
@@ -40,11 +40,21 @@ public class LoginController {
                 writer.println(kh.getMaKH());
                 writer.println(kh.getVaiTro());
             }
-            
-            JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
-            HomeView uh = new HomeView();
-            uh.setVisible(true);
-            view.setVisible(false);
+            if (kh.getVaiTro().trim().equalsIgnoreCase("admin")) {
+                JOptionPane.showMessageDialog(null, "Admin đăng nhập thành công", "Admin", JOptionPane.INFORMATION_MESSAGE);
+                HomeAdminView h = new HomeAdminView();
+                h.setVisible(true);
+                view.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
+                HomeView uh = new HomeView();
+                uh.setVisible(true);
+                view.setVisible(false);
+            }
+//            JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
+//            HomeView uh = new HomeView();
+//            uh.setVisible(true);
+//            view.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }

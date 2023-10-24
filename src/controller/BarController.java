@@ -9,19 +9,25 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import view.DonHangUserView;
 import view.DonHangView;
 import view.GioHangView;
 import view.KhachHangView;
 import view.SanPhamView;
+import view.HomeAdminView;
+import view.HomeView;
 
 /**
  *
  * @author A715-42G
  */
-public class BarController {
+public class BarController{
 
     private JPanel root;
     private JPanel nodeS;
@@ -34,18 +40,23 @@ public class BarController {
         this.root = jpnRoot;
     }
 
-    public void setView(String tp, JPanel jpnI, JLabel jlbI) {
+    public void setView(String tp, JPanel jpnI, JLabel jlbI) throws SQLException {
         typeS = tp;
 //        jpnI.setBackground(new Color(96, 100, 191));
 //        jlbI.setBackground(new Color(96, 100, 191));
         root.removeAll(); // ???
         root.setLayout(new BorderLayout()); // ????
         switch (tp) {
-            case "SanPham" -> nodeS = new SanPhamView();
-            case "GioHang" -> nodeS = new GioHangView();
-            case "DonHang" -> nodeS = new DonHangView();
-            case "KhachHang" -> nodeS = new KhachHangView();
-                
+            case "SanPham" ->
+                nodeS = new SanPhamView();
+            case "GioHang" ->
+                nodeS = new GioHangView();
+            case "DonHangAdmin" ->
+                nodeS = new DonHangView();
+            case "DonHangUser" ->
+                nodeS = new DonHangUserView();
+            case "KhachHang" ->
+                nodeS = new KhachHangView();
         }
         root.add(nodeS); // ???
         root.validate(); // ???
@@ -83,12 +94,37 @@ public class BarController {
                 case "GioHang":
                     node = new GioHangView();
                     break;
-                case "DonHang":
-                    node = new DonHangView();
+                case "DonHangUser":
+                {
+                    try {
+                        node = new DonHangUserView();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BarController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                     break;
+
+                case "DonHangAdmin":
+                {
+                    try {
+                        node = new DonHangView();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BarController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                    break;
+
                 case "KhachHang":
-                    node = new KhachHangView();
+                {
+                    try {
+                        node = new KhachHangView();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BarController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                     break;
+
+
             }
             root.removeAll();
             root.setLayout(new BorderLayout());
