@@ -37,6 +37,9 @@ public class GioHangChiTietView extends javax.swing.JPanel {
         totalLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         totalLabel.setText("jLabel1");
 
+        imageLabel.setText("hinh");
+        imageLabel.setPreferredSize(new java.awt.Dimension(32, 32));
+
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         nameLabel.setText("jLabel1");
 
@@ -84,8 +87,8 @@ public class GioHangChiTietView extends javax.swing.JPanel {
                             .addComponent(priceLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(imageLabel)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

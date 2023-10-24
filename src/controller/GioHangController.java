@@ -49,7 +49,7 @@ public class GioHangController {
         ArrayList<GioHangChiTietView> res = new ArrayList<GioHangChiTietView>();
         // Thay đổi đường dẫn tương đối của máy tính bạn đến chương trình JAVA ở đây
 //        String path = "src\\assets\\";
-        String path = "C:\\\\Users\\\\A715-42G\\\\Documents\\\\NetBeansProjects\\\\QLDH\\\\src\\assets";
+        String path = "C:\\Users\\A715-42G\\Documents\\NetBeansProjects\\QLDH\\src\\";
         Integer total_ = 0;
         try {
             ArrayList<GioHang> list_gh = GioHangDAO.selectAll(maKH);

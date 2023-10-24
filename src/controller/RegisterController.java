@@ -88,12 +88,12 @@ public class RegisterController {
         if (valPhone && (model.getSoDT().length() == 10 || model.getSoDT().length() == 11)) {
             jlbPhone.setText("");
         } else {
-            jlbPhone.setText("Số điện thoại chỉ gồm số và có từ 10-11 chữ số ");
+            jlbPhone.setText("Chỉ gồm số và có từ 10-11 chữ số ");
         }
         if (valPass) {
             jlbPass.setText("");
         } else {
-            jlbPass.setText("Mật khẩu phải gồm ít nhất 1 ký tự Hoa, 1 ký tự thường và 1 chữ số");
+            jlbPass.setText("ít nhất 1 ký tự Hoa, 1 ký tự thường và 1 chữ số");
         }
         if (valCPass) {
             jlbCPass.setText("");
