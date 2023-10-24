@@ -132,7 +132,6 @@ public class DonHangDAO {
             newdh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
             newdh.setSdt(rs.getString("SODT"));
             newdh.setDiachi(rs.getString("DIACHI"));
-//            newdh.setTrangThai((TrangThaiDH)rs.getString("TRANGTHAI"));
             newdh.setTongTien(Double.parseDouble(rs.getString("TONGTIEN")));
 
             list_dh.add(newdh);
@@ -144,7 +143,6 @@ public class DonHangDAO {
     public static ResultSet selectAll() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG ");
-//        db.close();
         return rs;
     }
     
@@ -152,7 +150,6 @@ public class DonHangDAO {
     public static ResultSet selectByMaKH(int maKH) throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG WHERE MAKH="+maKH);
-//        db.close();
         return rs;
     }
 

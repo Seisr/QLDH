@@ -5,7 +5,6 @@
 package qldh;
 
 import java.sql.SQLException;
-import view.DonHangView;
 import view.LoginView;
 
 /**
@@ -21,8 +20,6 @@ public class QLDH {
         // TODO code application logic here
         LoginView login = new LoginView();
         login.setVisible(true);
-//        DonHangView dhv = new DonHangView();
-//        dhv.setVisible(true);
     }
     
 }

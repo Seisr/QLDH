@@ -17,7 +17,6 @@ import java.util.ArrayList;
  */
 public class KhachHangDAO {
 
-//    hoTen,tenDN,pass,vaiTro,soDT,email
     public static KhachHang insert(KhachHang kh) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
             String sql = "INSERT INTO KHACHHANG OUTPUT Inserted.* VALUES (?, ?, ?, ?, ?, ?)";
@@ -113,7 +112,6 @@ public class KhachHangDAO {
     public static ResultSet selectAll() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
-//        db.close();
         return rs;
     }
 
