@@ -12,10 +12,10 @@ import java.sql.SQLException;
 
 public class JDBC {
     
-    private static final String JDBC_URL = "jdbc:sqlserver://localhost:1433;trustServerCertificate=True;"//;integratedSecurity=true;" 
+    private static final String JDBC_URL = "jdbc:sqlserver://localhost:1433;trustServerCertificate=True;;integratedSecurity=true;" 
             + "databaseName=QUANLYBANHANG";
-    private static final String JDBC_USERNAME = "kha";
-    private static final String JDBC_PASSWORD = "12041994";
+    private static final String JDBC_USERNAME = "sa";
+    private static final String JDBC_PASSWORD = "";
     
 
     public static Connection connection;
