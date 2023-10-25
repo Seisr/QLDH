@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import model.DonHang;
-import model.KhachHang;
-import model.SanPham;
 import model.TrangThaiDH;
 
 /**
@@ -121,6 +119,7 @@ public class DonHangDAO {
 //        }
 //
 //    }
+    
     public static ArrayList<DonHang> selectAll1() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG");
@@ -144,9 +143,6 @@ public class DonHangDAO {
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG ");
         return rs;
     }
-    
-    
-    
     
     public static ResultSet selectByMaKH(int maKH) throws SQLException {
         JDBC db = new JDBC();

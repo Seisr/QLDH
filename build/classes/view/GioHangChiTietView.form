@@ -80,7 +80,6 @@
     </Component>
     <Component class="javax.swing.JLabel" name="imageLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="hinh"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
         </Property>

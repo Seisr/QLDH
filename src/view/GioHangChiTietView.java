@@ -4,20 +4,17 @@ package view;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 /**
  *
  * @author khoa5
  */
 public class GioHangChiTietView extends javax.swing.JPanel {
-
     /**
      * Creates new form GioHangDetail
      */
     public GioHangChiTietView() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +34,6 @@ public class GioHangChiTietView extends javax.swing.JPanel {
         totalLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         totalLabel.setText("jLabel1");
 
-        imageLabel.setText("hinh");
         imageLabel.setPreferredSize(new java.awt.Dimension(32, 32));
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
@@ -91,7 +87,6 @@ public class GioHangChiTietView extends javax.swing.JPanel {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel imageLabel;

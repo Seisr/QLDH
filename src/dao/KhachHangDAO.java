@@ -69,6 +69,21 @@ public class KhachHangDAO {
         return null;
     }
 
+    public static void update1(KhachHang kh) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "UPDATE KHACHHANG SET TENDN=?, VAITRO=?, HOTEN=?, SODT=?, EMAIL=? OUTPUT Inserted.* WHERE MAKH=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, kh.getTenDN());
+            ps.setString(2, kh.getVaiTro());
+            ps.setString(3, kh.getHoTen());
+            ps.setString(4, kh.getSoDT());
+            ps.setString(5, kh.getEmail());
+            ps.setString(6, String.valueOf(kh.getMaKH()));
+            ps.executeQuery();
+//            return parse_obj(rs).get(0);
+        }
+    }
+
     public static KhachHang delete(KhachHang kh) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
             String sql = "DELETE FROM KHACHHANG OUTPUT Deleted.* WHERE MAKH=?";
@@ -90,6 +105,16 @@ public class KhachHangDAO {
         return null;
     }
 
+    public static void delete(int MAKH) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "DELETE FROM KHACHHANG OUTPUT Deleted.* WHERE MAKH=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setString(1, Integer.toString(MAKH));
+            ResultSet rs = ps.executeQuery();
+//            return parse_obj(rs).get(0);
+        }
+    }
+
     public static ArrayList<KhachHang> selectAll1() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
@@ -108,7 +133,7 @@ public class KhachHangDAO {
         System.out.println(list_kh);
         return list_kh;
     }
-    
+
     public static ResultSet selectAll() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");

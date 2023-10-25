@@ -7,24 +7,15 @@ package view;
 import controller.SanPhamController;
 import dao.GioHangDAO;
 import dao.SanPhamDAO;
-import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import model.SanPham;
-
 
 /**
  *
@@ -49,7 +40,14 @@ public class SanPhamView extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         spac.loadData(tblSanPham, vaiTro);
+        tblSanPham.setRowHeight(90);
+        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);
 
         switch (vaiTro) {
             case "guest" -> {
@@ -58,7 +56,7 @@ public class SanPhamView extends javax.swing.JPanel {
                 btnThemGioHang.setEnabled(false);
                 txtSoluong.setEnabled(false);
                 btnXoa.setVisible(false);
-                
+
             }
             case "user" -> {
                 btnSua.setVisible(false);
@@ -73,7 +71,6 @@ public class SanPhamView extends javax.swing.JPanel {
             }
 
         }
-        //admin
     }
 
     /**
@@ -130,7 +127,7 @@ public class SanPhamView extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Danh sách sản phẩm");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 6, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,10 +149,10 @@ public class SanPhamView extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblSanPham);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 28, 821, 253));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 821, 253));
 
         jLabel2.setText("Thông tin sản phẩm");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 299, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         txtMaSP.setEditable(false);
         add(txtMaSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 368, 36, -1));
@@ -175,13 +172,13 @@ public class SanPhamView extends javax.swing.JPanel {
         jLabel6.setText("Đơn giá");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 340, -1, -1));
         add(txtSoLuongTonKho, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 368, 101, -1));
-        add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, 101, -1));
+        add(txtSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 101, -1));
 
         jLabel8.setText("Số lượng tồn kho");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 340, -1, -1));
 
-        labelSoluong.setText("Qty");
-        add(labelSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, -1, -1));
+        labelSoluong.setText("Số lượng");
+        add(labelSoluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, -1, -1));
 
         jLabel10.setText("Loại");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(739, 340, -1, -1));
@@ -211,13 +208,13 @@ public class SanPhamView extends javax.swing.JPanel {
         });
         add(btnSua, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 429, -1, -1));
 
-        btnThemGioHang.setText("Add to cart");
+        btnThemGioHang.setText("Thêm vào giỏ hàng");
         btnThemGioHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemGioHangActionPerformed(evt);
             }
         });
-        add(btnThemGioHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 420, -1, -1));
+        add(btnThemGioHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(692, 423, 140, 30));
         add(txtHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 368, 101, -1));
 
         jLabel11.setText("Hình ảnh");
@@ -235,6 +232,12 @@ public class SanPhamView extends javax.swing.JPanel {
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         // TODO add your handling code here:
         spac.loadData(tblSanPham, vaiTro);
+        tblSanPham.setRowHeight(90);
+        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed

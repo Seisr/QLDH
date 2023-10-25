@@ -4,34 +4,26 @@
  */
 package view;
 
-import dao.DonHangDAO;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.ResultSet;
+import controller.DonHangUserController;
 import java.sql.SQLException;
-import javax.swing.table.DefaultTableModel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author A715-42G
  */
 public class DonHangUserView extends javax.swing.JPanel {
-
-    private int maKH = 0;
-
     /**
      * Creates new form DonHangView
      */
     public DonHangUserView() throws SQLException {
 
         initComponents();
-        loadData();
+        DonHangUserController dhac = new DonHangUserController();
+        dhac.loadData(tblDonHang);
+        tblDonHang.setRowHeight(90);
+        tblDonHang.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblDonHang.getColumnModel().getColumn(1).setPreferredWidth(40);
+        tblDonHang.getColumnModel().getColumn(2).setPreferredWidth(250);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,11 +57,11 @@ public class DonHangUserView extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(227, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,39 +69,15 @@ public class DonHangUserView extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDonHang;
     // End of variables declaration//GEN-END:variables
-private void loadData() throws SQLException {
-        try (BufferedReader reader = new BufferedReader(new FileReader("mydata.ser"))) {
-            maKH = Integer.parseInt(reader.readLine());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        DefaultTableModel model1 = (DefaultTableModel) tblDonHang.getModel();
-        Object[] column = new Object[]{"Mã đơn hàng", "Số điện thoại", "Địa chỉ", "Trạng thái", "Tổng tiền"};
-        model1.setColumnIdentifiers(column);
-        ResultSet rs = DonHangDAO.selectByMaKH(maKH);
-        model1.setRowCount(0);
-        while (rs.next()) {
-            String maDH = rs.getString("MADONHANG");
-            String Sdt = rs.getString("SODT");
-            String diaChi = rs.getString("DIACHI");
-            String trangThai = rs.getString("TRANGTHAI");
-            String tongTien = rs.getString("TONGTIEN");
-            Object[] row = {maDH, Sdt, diaChi, trangThai, tongTien};
-            model1.addRow(row);
-        }
-    }
 
 }

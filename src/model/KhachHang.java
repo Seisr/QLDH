@@ -4,7 +4,6 @@
  */
 package model;
 
-
 /**
  *
  * @author A715-42G
@@ -21,14 +20,31 @@ public class KhachHang {
 
     public KhachHang() {
     }
-    
-    
 
 //    hoTen,tenDN,pass,vaiTro,soDT,email
-    public KhachHang(String tenDN, String hoten, String matKhau , String soDT, String email) {
+    public KhachHang(String tenDN, String hoten, String matKhau, String soDT, String email) {
         this.hoten = hoten;
         this.tenDN = tenDN;
 //        this.vaiTro = vaiTro;
+        this.matKhau = matKhau;
+        this.soDT = soDT;
+        this.email = email;
+    }
+
+    public KhachHang(String tenDN, String hoten, String matKhau, String vaiTro, String soDT, String email) {
+        this.hoten = hoten;
+        this.tenDN = tenDN;
+        this.vaiTro = vaiTro;
+        this.matKhau = matKhau;
+        this.soDT = soDT;
+        this.email = email;
+    }
+
+    public KhachHang(int maKH, String tenDN, String hoten, String matKhau, String vaiTro, String soDT, String email) {
+        this.maKH = maKH;
+        this.hoten = hoten;
+        this.tenDN = tenDN;
+        this.vaiTro = vaiTro;
         this.matKhau = matKhau;
         this.soDT = soDT;
         this.email = email;

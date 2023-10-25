@@ -6,43 +6,48 @@ package controller;
 
 import dao.JDBC;
 import dao.KhachHangDAO;
+import dao.SanPhamDAO;
+import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.KhachHang;
+import model.SanPham;
 
 /**
  *
  * @author A715-42G
  */
 public class KhachHangController {
-//        JDBC db = new JDBC();
-//        ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
-//    public void loadData(JTable tblKhachHang, String vaitro) {
-//        // Thay đổi đường dẫn tương đối của máy tính bạn đến chương trình JAVA ở đây
-//        String path = "src\\assets\\";
-//        DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
-////        Object[] column = new Object[]{"Mã SP", "Tên SP", "Mô tả", "Đơn giá", "Số lượng tồn kho", "Hình ảnh", "Loại"};
-//        Object[] column = new Object[]{"Mã Khách hàng", "Tên đăng nhập", "Vai trò", "Họ tên", "Số điện thoại", "Email"};
-//        model.setColumnIdentifiers(column);
-//        try {
-//            ArrayList<KhachHang> list_kh = KhachHangDAO.selectAll();
-//            model.setRowCount(0);
-//            for (KhachHang kh : list_kh) {
-//                int maSP = sp.getMaSP();
-//                String tenSP = sp.getTenSP();
-//                String moTa = sp.getMoTa();
-//                int donGia = sp.getDonGia();
-//                int soLuongTonKho = sp.getSoLuongTonKho();
-//                String loai = sp.getLoai();
-//                String hinhAnh = sp.getHinhAnh();
-////                Object[] row = {maSP, tenSP, moTa, donGia, soLuongTonKho, imageLabel, loai.trim()};
-//                Object[] row = {maKH, tenDN, vaiTro, hoTen, soDT, email};
-//                model.addRow(row);
-//            }
-//        } catch (SQLException e) {
-//        }
-//    }
+
+    public void loadData(JTable tblKhachHang) throws SQLException {
+
+        DefaultTableModel model1 = (DefaultTableModel) tblKhachHang.getModel();
+        Object[] column = new Object[]{"Mã Khách hàng", "Tên đăng nhập", "Vai trò", "Họ tên", "Mật khẩu", "Số điện thoại", "Email"};
+        model1.setColumnIdentifiers(column);
+        ResultSet rs = KhachHangDAO.selectAll();
+        model1.setRowCount(0);
+        while (rs.next()) {
+            String maKH = rs.getString("MAKH");
+            String tenDN = rs.getString("TENDN");
+            String vaiTro = rs.getString("VAITRO");
+            String hoTen = rs.getString("HOTEN");
+            String matKhau = rs.getString("MATKHAU");
+            String soDT = rs.getString("SODT");
+            String email = rs.getString("EMAIL");
+            Object[] row = {maKH, tenDN, vaiTro, hoTen, matKhau, soDT, email};
+            model1.addRow(row);
+        }
+    }
+        public void addKhachHang(KhachHang kh) {
+        try {
+            KhachHangDAO.insert(kh);
+            JOptionPane.showMessageDialog(null, "Thêm người dùng thành công");
+        } catch (HeadlessException | SQLException e) {
+        }
+    }
 }
+
