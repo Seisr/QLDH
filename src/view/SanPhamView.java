@@ -311,6 +311,8 @@ public class SanPhamView extends javax.swing.JPanel {
         try {
             // TODO add your handling code here:
             SanPhamDAO.delete(Integer.parseInt(txtMaSP.getText()));
+            JOptionPane.showMessageDialog(null,"Đã xóa sản phẩm");
+            
         } catch (SQLException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
