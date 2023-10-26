@@ -41,7 +41,7 @@ public class SanPhamView extends javax.swing.JPanel {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        spac.loadData(tblSanPham, vaiTro);
+        spac.loadData(tblSanPham, vaiTro,"","");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -109,6 +109,11 @@ public class SanPhamView extends javax.swing.JPanel {
         txtHinhAnh = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btnXoa = new javax.swing.JButton();
+        btnDrink = new javax.swing.JButton();
+        btnFood = new javax.swing.JButton();
+        btnAll = new javax.swing.JButton();
+        txtFilter = new javax.swing.JTextField();
+        btnFilter = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -227,11 +232,44 @@ public class SanPhamView extends javax.swing.JPanel {
             }
         });
         add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 429, -1, -1));
+
+        btnDrink.setText("Thức Uống");
+        btnDrink.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDrinkActionPerformed(evt);
+            }
+        });
+        add(btnDrink, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+
+        btnFood.setText("Đồ Ăn");
+        btnFood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFoodActionPerformed(evt);
+            }
+        });
+        add(btnFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
+
+        btnAll.setText("Tất Cả");
+        btnAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAllActionPerformed(evt);
+            }
+        });
+        add(btnAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
+        add(txtFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 160, 20));
+
+        btnFilter.setText("Lọc");
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+        add(btnFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         // TODO add your handling code here:
-        spac.loadData(tblSanPham, vaiTro);
+        spac.loadData(tblSanPham, vaiTro, "","");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -318,8 +356,53 @@ public class SanPhamView extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void btnDrinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrinkActionPerformed
+        spac.loadData(tblSanPham, vaiTro,"Thức uống","");
+        tblSanPham.setRowHeight(90);
+        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);
+    }//GEN-LAST:event_btnDrinkActionPerformed
+
+    private void btnFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFoodActionPerformed
+        spac.loadData(tblSanPham, vaiTro,"Đồ ăn","");
+        tblSanPham.setRowHeight(90);
+        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFoodActionPerformed
+
+    private void btnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllActionPerformed
+        spac.loadData(tblSanPham, vaiTro,"","");
+        tblSanPham.setRowHeight(90);
+        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);  
+    }//GEN-LAST:event_btnAllActionPerformed
+
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        String filter = txtFilter.getText();
+        spac.loadData(tblSanPham, vaiTro,"",filter);
+        tblSanPham.setRowHeight(90);
+        tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);  
+    }//GEN-LAST:event_btnFilterActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAll;
+    private javax.swing.JButton btnDrink;
+    private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnFood;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
@@ -340,6 +423,7 @@ public class SanPhamView extends javax.swing.JPanel {
     private javax.swing.JLabel labelSoluong;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtDonGia;
+    private javax.swing.JTextField txtFilter;
     private javax.swing.JTextField txtHinhAnh;
     private javax.swing.JTextField txtLoai;
     private javax.swing.JTextField txtMaSP;

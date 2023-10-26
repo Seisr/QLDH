@@ -24,14 +24,14 @@ import view.SanPhamView;
  */
 public class SanPhamController {
     
-    public void loadData(JTable tblSanPham, String vaitro) {
+    public void loadData(JTable tblSanPham, String vaitro, String loaisp, String filter) {
         // Thay đổi đường dẫn tương đối của máy tính bạn đến chương trình JAVA ở đây
         String path = "src\\";
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
         Object[] column = new Object[]{"Mã SP", "Tên SP", "Mô tả", "Đơn giá", "Số lượng tồn kho", "Hình ảnh", "Loại"};
         model.setColumnIdentifiers(column);
         try {
-            ArrayList<SanPham> list_sp = SanPhamDAO.selectAll("");
+            ArrayList<SanPham> list_sp = SanPhamDAO.selectAll(loaisp, filter);
             model.setRowCount(0);
             for (SanPham sp: list_sp) {
                 int maSP = sp.getMaSP();
