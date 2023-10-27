@@ -68,7 +68,6 @@ public class SanPhamController {
 
     public void addSanPham(SanPham sp) {
         try {
-            System.out.println("IMHERE");
             SanPhamDAO.insert(sp);
             JOptionPane.showMessageDialog(null, "Thêm Sản Phẩm thành công");
         } catch (HeadlessException | SQLException e) {
