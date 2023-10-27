@@ -31,7 +31,19 @@ public class SanPhamController {
         Object[] column = new Object[]{"Mã SP", "Tên SP", "Mô tả", "Đơn giá", "Số lượng tồn kho", "Hình ảnh", "Loại"};
         model.setColumnIdentifiers(column);
         try {
-            ArrayList<SanPham> list_sp = SanPhamDAO.selectAll(loaisp, filter);
+            ArrayList<SanPham> list_sp = SanPhamDAO.selectAll(loaisp);
+            if (!filter.isBlank()){
+                ArrayList<SanPham> list_sp_filter = new ArrayList();
+                for (SanPham sanPham : list_sp) {
+                    String ten = sanPham.getTenSP().toLowerCase();
+                    String mt = sanPham.getMoTa().toLowerCase();
+                    String ft = filter.toLowerCase();
+                    if (ten.contains(ft) || mt.contains(ft)){
+                        list_sp_filter.add(sanPham);
+                    }
+                }
+                list_sp = (ArrayList)list_sp_filter.clone();
+            }
             model.setRowCount(0);
             for (SanPham sp: list_sp) {
                 int maSP = sp.getMaSP();
