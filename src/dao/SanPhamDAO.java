@@ -75,16 +75,12 @@ public class SanPhamDAO  {
         }
     }
 
-    public static ArrayList<SanPham> selectAll(String loai, String filter) throws SQLException {
+    public static ArrayList<SanPham> selectAll(String loai) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
             String sql = "SELECT * FROM SANPHAM WHERE 1=1";
             if (!loai.isBlank()) {
                 sql += " AND LOAI=N'" + loai + "'";
             }
-            if (!filter.isBlank()) {
-                sql += " AND( TENSP like '%"+filter+"%' or MOTA like '%"+filter+"%')";
-            }
-            System.out.println(sql);
             PreparedStatement ps = connection.prepareCall(sql);
             ResultSet rs = ps.executeQuery();
             return parse_obj(rs);
