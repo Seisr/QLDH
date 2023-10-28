@@ -103,7 +103,7 @@ public class RegisterView extends javax.swing.JFrame {
         });
         getContentPane().add(txtAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 140, -1));
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nBack3.jpg"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/nBack3.jpg"))); // NOI18N
         btnBack.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBack.setMaximumSize(new java.awt.Dimension(29, 29));
         btnBack.setMinimumSize(new java.awt.Dimension(26, 26));
@@ -143,7 +143,7 @@ public class RegisterView extends javax.swing.JFrame {
         jlbPhone.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jlbPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
 
-        anhNen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/register.jpg"))); // NOI18N
+        anhNen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/register.jpg"))); // NOI18N
         anhNen.setToolTipText("");
         getContentPane().add(anhNen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 500));
 

@@ -128,7 +128,7 @@
     <Component class="javax.swing.JButton" name="btnBack">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/nBack3.jpg"/>
+          <Image iconType="3" name="/assets/img/nBack3.jpg"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
@@ -269,7 +269,7 @@
     <Component class="javax.swing.JLabel" name="anhNen">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/register.jpg"/>
+          <Image iconType="3" name="/assets/img/register.jpg"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>

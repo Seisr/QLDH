@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.KhachHang;
 import view.HomeAdminView;
@@ -22,9 +23,9 @@ import view.HomeView;
  */
 public class LoginController {
 
-    private LoginView view = new LoginView();
+//    private LoginView view;
 
-    public void login(String user, String pass) throws FileNotFoundException {
+    public void login(String user, String pass,JFrame view) throws FileNotFoundException {
 
         try {
             KhachHang kh = KhachHangDAO.selectByTenDN(user);
