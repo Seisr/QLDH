@@ -7,6 +7,7 @@ package view;
 import controller.GioHangController;
 import dao.DonHangDAO;
 import dao.GioHangDAO;
+import dao.SanPhamDAO;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.DonHang;
+import model.GioHang;
+import model.SanPham;
 import model.TrangThaiDH;
 
 /**
@@ -165,6 +168,9 @@ public class GioHangView extends javax.swing.JPanel {
             DonHangDAO.insert(dh);
             for (Integer maGH : maGHs) {
                 GioHangDAO.updateTrangThai(maKH, maGH, Boolean.TRUE);
+                GioHang gh = GioHangDAO.selectByMaGH(maGH);
+                SanPham sp = SanPhamDAO.selectByMaSP(gh.getMaSP());
+                SanPhamDAO.truTonKhoSP(gh.getMaSP(), gh.getSoLuong() < sp.getSoLuongTonKho()? sp.getSoLuongTonKho() - gh.getSoLuong() : 0);
             }
             listgiohang.removeAll();
             JOptionPane.showMessageDialog(null, "Tạo đơn hàng thành công");
