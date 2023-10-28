@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -33,13 +33,14 @@ public class HomeView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Màn hình chính");
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/burger.png"));
+        this.setIconImage(img.getImage());
         BarController barCon = new BarController(jpnView);
         barCon.setView("SanPham", jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();
         listItem.add(new Bar("SanPham", jpnSanPham, jlbSanPham));
         listItem.add(new Bar("GioHang", jpnGioHang, jlbGioHang));
         listItem.add(new Bar("DonHangUser", jpnDonHangUser, jlbDonHangUser));
-//        listItem.add(new Bar("KhachHang", jpnKhachHang, jlbKhachHang));
         barCon.setEvent(listItem);
         try (BufferedReader reader = new BufferedReader(new FileReader("mydata.ser"))) {
             maKH = Integer.parseInt(reader.readLine());
@@ -255,7 +256,7 @@ public class HomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
+
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn muốn trở về màn hình đăng nhập?", "Cảnh báo", dialogButton);
         if (dialogResult == JOptionPane.YES_OPTION) {
@@ -291,23 +292,6 @@ public class HomeView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

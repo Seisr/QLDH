@@ -268,7 +268,7 @@ public class SanPhamView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-        // TODO add your handling code here:
+
         spac.loadData(tblSanPham, vaiTro, "","");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -279,7 +279,7 @@ public class SanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+
         Integer maSP = Integer.valueOf(txtMaSP.getText());
         String tenSP = txtTenSP.getText();
         String moTa = txtMoTa.getText();
@@ -293,7 +293,7 @@ public class SanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+
         Integer maSP = Integer.valueOf(txtMaSP.getText());
         String tenSP = txtTenSP.getText();
         String moTa = txtMoTa.getText();
@@ -313,8 +313,6 @@ public class SanPhamView extends javax.swing.JPanel {
 
     private void btnThemGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHangActionPerformed
         try {
-            // TODO add your handling code here:
-//        int maSP = Integer.parseInt(txtMaSP.getText());
             int qty = Integer.parseInt(txtSoluong.getText());
             int maSP = Integer.parseInt(txtMaSP.getText());
             Integer donGia = Integer.valueOf(txtDonGia.getText());
@@ -331,7 +329,7 @@ public class SanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemGioHangActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
-        // TODO add your handling code here:
+
         int i = tblSanPham.getSelectedRow();
         String maSP = tblSanPham.getValueAt(i, 0).toString();
         String tenSP = tblSanPham.getValueAt(i, 1).toString();
@@ -352,7 +350,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         try {
-            // TODO add your handling code here:
+
             SanPhamDAO.delete(Integer.parseInt(txtMaSP.getText()));
             JOptionPane.showMessageDialog(null,"Đã xóa sản phẩm");
             

@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author A715-42G
@@ -27,6 +29,8 @@ public class HomeAdminView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Màn hình chính");
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/burger.png"));
+        this.setIconImage(img.getImage());
         BarController barCon = new BarController(jpnView);
         barCon.setView("SanPham", jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();

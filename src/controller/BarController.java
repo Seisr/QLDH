@@ -20,8 +20,6 @@ import view.DonHangView;
 import view.GioHangView;
 import view.KhachHangView;
 import view.SanPhamView;
-import view.HomeAdminView;
-import view.HomeView;
 
 /**
  *
@@ -42,10 +40,8 @@ public class BarController{
 
     public void setView(String tp, JPanel jpnI, JLabel jlbI) throws SQLException {
         typeS = tp;
-//        jpnI.setBackground(new Color(96, 100, 191));
-//        jlbI.setBackground(new Color(96, 100, 191));
-        root.removeAll(); // ???
-        root.setLayout(new BorderLayout()); // ????
+        root.removeAll(); 
+        root.setLayout(new BorderLayout()); 
         switch (tp) {
             case "SanPham" ->
                 nodeS = new SanPhamView();
@@ -58,16 +54,15 @@ public class BarController{
             case "KhachHang" ->
                 nodeS = new KhachHangView();
         }
-        root.add(nodeS); // ???
-        root.validate(); // ???
-        root.repaint(); // ???
+        root.add(nodeS); 
+        root.validate(); 
+        root.repaint(); 
     }
 
     public void setEvent(ArrayList<Bar> listItem) {
         this.listItem = listItem;
         for (Bar item : listItem) {
             item.getJlb().addMouseListener(new LabelEvent(item.getType(), item.getJpn(), item.getJlb()));
-//            item.getJpn().addMouseListener(new LabelEvent(item.getType(),item.getJpn(),item.getJlb()));
         }
     }
 
@@ -136,9 +131,6 @@ public class BarController{
 
         @Override
         public void mousePressed(MouseEvent e) {
-//            typeS = type;
-//            jpnI.setBackground(new Color(96, 100, 191));
-//            jlbI.setBackground(new Color(96, 100, 191));
         }
 
         @Override

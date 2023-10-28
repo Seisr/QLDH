@@ -93,8 +93,7 @@ public class DonHangView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusBtnActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
+
         int[] list = tblDonHang.getSelectedRows();
         for (int i : list) {
             int maDH = Integer.parseInt(tblDonHang.getValueAt(i, 0).toString());

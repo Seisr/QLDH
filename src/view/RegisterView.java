@@ -5,13 +5,7 @@
 package view;
 
 import controller.RegisterController;
-import dao.KhachHangDAO;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import model.KhachHang;
 
 /**
@@ -26,6 +20,8 @@ public class RegisterView extends javax.swing.JFrame {
     public RegisterView() {
         initComponents();
         setLocationRelativeTo(null);
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/burger.png"));
+        this.setIconImage(img.getImage());
     }
 
     /**
@@ -60,6 +56,7 @@ public class RegisterView extends javax.swing.JFrame {
         anhNen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Đăng ký");
         setFocusTraversalPolicyProvider(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,19 +85,7 @@ public class RegisterView extends javax.swing.JFrame {
         getContentPane().add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, -1, -1));
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 140, -1));
         getContentPane().add(pasPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 140, -1));
-
-        pasCPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pasCPassActionPerformed(evt);
-            }
-        });
         getContentPane().add(pasCPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 140, -1));
-
-        txtAcc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAccActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 140, -1));
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/nBack3.jpg"))); // NOI18N
@@ -151,22 +136,14 @@ public class RegisterView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+
         LoginView l = new LoginView();
         l.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAccActionPerformed
-
-    private void pasCPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasCPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pasCPassActionPerformed
-
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
+
         String tenKH = txtName.getText();
         String email = txtEmail.getText();
         String soDT = txtPhone.getText();
@@ -174,7 +151,7 @@ public class RegisterView extends javax.swing.JFrame {
         String matKhau = pasPass.getText();
         String cMatKhau = pasCPass.getText();
         KhachHang kh = new KhachHang(tenDN, tenKH, matKhau, soDT, email);
-        RegisterController rc = new RegisterController(kh, this, cMatKhau, jlbName, jlbEmail, jlbPhone, jlbPass,jlbCPass);
+        RegisterController rc = new RegisterController(kh, this, cMatKhau, jlbName, jlbEmail, jlbPhone, jlbPass, jlbCPass);
         rc.register();
     }//GEN-LAST:event_btnRegisterActionPerformed
 

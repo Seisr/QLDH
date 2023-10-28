@@ -23,9 +23,7 @@ import view.HomeView;
  */
 public class LoginController {
 
-//    private LoginView view;
-
-    public void login(String user, String pass,JFrame view) throws FileNotFoundException {
+    public void login(String user, String pass, JFrame lView) throws FileNotFoundException {
 
         try {
             KhachHang kh = KhachHangDAO.selectByTenDN(user);
@@ -45,19 +43,18 @@ public class LoginController {
                 JOptionPane.showMessageDialog(null, "Admin đăng nhập thành công", "Admin", JOptionPane.INFORMATION_MESSAGE);
                 HomeAdminView h = new HomeAdminView();
                 h.setVisible(true);
-                view.setVisible(false);
+                lView.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
                 HomeView uh = new HomeView();
                 uh.setVisible(true);
-                view.setVisible(false);
+                lView.setVisible(false);
             }
-//            JOptionPane.showMessageDialog(null, "User đăng nhập thành công", "User", JOptionPane.INFORMATION_MESSAGE);
-//            HomeView uh = new HomeView();
-//            uh.setVisible(true);
-//            view.setVisible(false);
+
         } catch (SQLException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 }

@@ -6,8 +6,6 @@ package view;
 
 import controller.KhachHangController;
 import dao.KhachHangDAO;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.KhachHang;
@@ -122,12 +120,6 @@ public class KhachHangView extends javax.swing.JPanel {
 
         jLabel7.setText("Email");
 
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Mật khẩu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -216,8 +208,7 @@ public class KhachHangView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-//        Integer maKH = Integer.valueOf(txtMaKH.getText());
+
         String tenDN = txtTenDN.getText();
         String vaiTro = txtVaiTro.getText();
         String hoTen = txtHoTen.getText();
@@ -232,7 +223,7 @@ public class KhachHangView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+
         int maKH = Integer.parseInt(txtMaKH.getText());
         String tenDN = txtTenDN.getText();
         String vaiTro = txtVaiTro.getText();
@@ -251,22 +242,17 @@ public class KhachHangView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+
         try {
-            // TODO add your handling code here:
+
             KhachHangDAO.delete(Integer.parseInt(txtMaKH.getText()));
             JOptionPane.showMessageDialog(null, "Xóa người dùng thành công");
         } catch (SQLException ex) {
-//            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
     private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
-        // TODO add your handling code here:
+
         int i = tblKhachHang.getSelectedRow();
         String maKH = tblKhachHang.getValueAt(i, 0).toString();
         String tenDN = tblKhachHang.getValueAt(i, 1).toString();
@@ -286,7 +272,7 @@ public class KhachHangView extends javax.swing.JPanel {
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
     private void updateStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusBtnActionPerformed
-        // TODO add your handling code here:
+
         KhachHangController khac = new KhachHangController();
         try {
             khac.loadData(tblKhachHang);

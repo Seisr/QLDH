@@ -4,18 +4,14 @@
  */
 package controller;
 
-import dao.JDBC;
 import dao.KhachHangDAO;
-import dao.SanPhamDAO;
 import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.KhachHang;
-import model.SanPham;
 
 /**
  *

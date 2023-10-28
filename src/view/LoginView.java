@@ -17,15 +17,15 @@ import javax.swing.ImageIcon;
  * @author A715-42G
  */
 public class LoginView extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form LoginView
      */
     public LoginView() {
         initComponents();
         setLocationRelativeTo(null);
-        ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/iconTitle.png"));
-        this.setIconImage(img.getImage()); 
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/burger.png"));
+        this.setIconImage(img.getImage());
     }
 
     /**
@@ -48,7 +48,7 @@ public class LoginView extends javax.swing.JFrame {
         lblWall = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("LoginV");
+        setTitle("Đăng nhập");
         setMinimumSize(new java.awt.Dimension(723, 466));
         setPreferredSize(new java.awt.Dimension(723, 466));
         setResizable(false);
@@ -109,37 +109,40 @@ public class LoginView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+
         String user = txtAccount.getText();
         String pass = pasPass.getText();
         LoginController lc = new LoginController();
-        
+
         try {
-            lc.login(user,pass,this);
+            lc.login(user, pass, this);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+//
+//    public void btnLogin(ActionListener loginAction) {
+//        btnLogin.addActionListener(loginAction);
+//    }
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
+
         RegisterView r = new RegisterView();
         r.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void checkShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkShowActionPerformed
-        // TODO add your handling code here:
-        if(checkShow.isSelected() == true){
-            pasPass.setEchoChar((char)0);
-        }else{
+
+        if (checkShow.isSelected() == true) {
+            pasPass.setEchoChar((char) 0);
+        } else {
             pasPass.setEchoChar('*');
         }
     }//GEN-LAST:event_checkShowActionPerformed
 
     private void btnLoginAsGuestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginAsGuestActionPerformed
-        try {                                                
-            // TODO add your handling code here:
+        try {
             try (PrintWriter writer = new PrintWriter("mydata.ser")) {
                 writer.println(0);
                 writer.println("guest");
@@ -179,8 +182,6 @@ public class LoginView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

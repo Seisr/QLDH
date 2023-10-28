@@ -72,12 +72,6 @@ public class GioHangView extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(listgiohang);
 
-        txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDiaChiActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Địa chỉ");
 
         jLabel3.setText("Số điện thoại");
@@ -90,12 +84,6 @@ public class GioHangView extends javax.swing.JPanel {
         });
 
         jlbTotal.setText("0");
-
-        txtSoDT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoDTActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Tổng tiền:");
 
@@ -150,13 +138,8 @@ public class GioHangView extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDiaChiActionPerformed
-
     private void btnTaoDonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonHangActionPerformed
         try {
-            // TODO add your handling code here:
             ArrayList<Integer> maGHs = ghac.getMaDH(maKH);
             DonHang dh = new DonHang();
             dh.setDiachi(txtDiaChi.getText());
@@ -178,10 +161,6 @@ public class GioHangView extends javax.swing.JPanel {
             Logger.getLogger(GioHangView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnTaoDonHangActionPerformed
-
-    private void txtSoDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoDTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoDTActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
