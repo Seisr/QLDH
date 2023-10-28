@@ -96,4 +96,14 @@ public class SanPhamDAO  {
             return parse_obj(rs).get(0);
         }
     }
+    
+    public static void truTonKhoSP(int MASP, int soluongTonkho) throws SQLException {
+        try (Connection connection = JDBC.getConnection()) {
+            String sql = "UPDATE SANPHAM SET SLTONKHO = ? WHERE MASP=?";
+            PreparedStatement ps = connection.prepareCall(sql);
+            ps.setInt(1, soluongTonkho);
+            ps.setInt(2, MASP);
+            ps.executeUpdate();
+        }
+    }
 }

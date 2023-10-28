@@ -92,7 +92,7 @@ public class GioHangDAO {
 
     public static GioHang selectByMaGH(int MAGH) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
-            String sql = "SELECT * FROM GIOHANG WHERE MAGH=?";
+            String sql = "SELECT * FROM GIOHANG WHERE MAGIOHANG=?";
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setInt(1, MAGH);
             ResultSet rs = ps.executeQuery();

@@ -318,6 +318,11 @@ public class SanPhamView extends javax.swing.JPanel {
             int qty = Integer.parseInt(txtSoluong.getText());
             int maSP = Integer.parseInt(txtMaSP.getText());
             Integer donGia = Integer.valueOf(txtDonGia.getText());
+            SanPham sp = SanPhamDAO.selectByMaSP(maSP);
+            if (sp.getSoLuongTonKho() - qty < 0) {
+                JOptionPane.showMessageDialog(null, "Vượt quá số lượng tồn kho! Không thể thêm sản phẩm vào giỏ hàng");
+                return;
+            }
             GioHangDAO.insert(maKH, maSP, qty, donGia);
             JOptionPane.showMessageDialog(null, "Đã thêm sản phẩm vào giỏ hàng");
         } catch (SQLException ex) {
