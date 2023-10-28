@@ -24,7 +24,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
         setLocationRelativeTo(null);
-        ImageIcon img = new ImageIcon(this.getClass().getResource("/img/iconTitle.png"));
+        ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/iconTitle.png"));
         this.setIconImage(img.getImage()); 
     }
 
@@ -100,7 +100,7 @@ public class LoginView extends javax.swing.JFrame {
         });
         getContentPane().add(btnLoginAsGuest, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
-        lblWall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/8.jpg"))); // NOI18N
+        lblWall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/8.jpg"))); // NOI18N
         getContentPane().add(lblWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -620, 1090, 1680));
 
         getAccessibleContext().setAccessibleDescription("");
@@ -113,8 +113,9 @@ public class LoginView extends javax.swing.JFrame {
         String user = txtAccount.getText();
         String pass = pasPass.getText();
         LoginController lc = new LoginController();
+        
         try {
-            lc.login(user,pass);
+            lc.login(user,pass,this);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
         }

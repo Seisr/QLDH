@@ -73,7 +73,7 @@ public class HomeAdminView extends javax.swing.JFrame {
         jpnBar.setBackground(new java.awt.Color(82, 83, 81));
         jpnBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/order2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/order2.jpg"))); // NOI18N
         jLabel1.setText("Quản lý bán hàng");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -98,7 +98,7 @@ public class HomeAdminView extends javax.swing.JFrame {
         jpnSanPham.setPreferredSize(new java.awt.Dimension(158, 74));
         jpnSanPham.setVerifyInputWhenFocusTarget(false);
 
-        jlbSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu.png"))); // NOI18N
+        jlbSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/menu.png"))); // NOI18N
         jlbSanPham.setText("Sản phẩm");
 
         javax.swing.GroupLayout jpnSanPhamLayout = new javax.swing.GroupLayout(jpnSanPham);
@@ -120,7 +120,7 @@ public class HomeAdminView extends javax.swing.JFrame {
 
         jpnBar.add(jpnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 163, -1));
 
-        jlbDonHangAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/order-delivery.png"))); // NOI18N
+        jlbDonHangAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/order-delivery.png"))); // NOI18N
         jlbDonHangAdmin.setText("Đơn hàng");
         jlbDonHangAdmin.setMaximumSize(new java.awt.Dimension(73, 16));
         jlbDonHangAdmin.setMinimumSize(new java.awt.Dimension(73, 16));
@@ -149,7 +149,7 @@ public class HomeAdminView extends javax.swing.JFrame {
         jlbNhom.setText("Nhóm 3 - KhaTrang");
         jpnBar.add(jlbNhom, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 515, -1, -1));
 
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/log-out244.jpg"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/log-out244.jpg"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnExit.setMaximumSize(new java.awt.Dimension(30, 31));
         btnExit.setPreferredSize(new java.awt.Dimension(27, 27));
@@ -160,7 +160,7 @@ public class HomeAdminView extends javax.swing.JFrame {
         });
         jpnBar.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 476, -1, -1));
 
-        jlbKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/khachhang.jpg"))); // NOI18N
+        jlbKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/khachhang.jpg"))); // NOI18N
         jlbKhachHang.setText("Khách hàng");
 
         javax.swing.GroupLayout jpnKhachHangLayout = new javax.swing.GroupLayout(jpnKhachHang);
@@ -190,7 +190,7 @@ public class HomeAdminView extends javax.swing.JFrame {
         jpnView.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jpnRoot.add(jpnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Food20.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/Food20.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         jpnRoot.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 1000, 640));
 

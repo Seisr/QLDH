@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/controller/SanPhamController.java</file>
-            <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/dao/SanPhamDAO.java</file>
-            <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/view/SanPhamView.java</file>
-            <file>file:/C:/Users/khoa5/OneDrive/Desktop/QLDH/src/dao/JDBC.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/SanPhamDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/KhachHangDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/GioHangDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/LoginView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/DonHangDAO.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/dao/JDBC.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/SanPhamController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/SanPhamView.java</file>
         </group>
     </open-files>
 </project-private>

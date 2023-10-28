@@ -98,7 +98,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/order2.jpg"/>
+                      <Image iconType="3" name="/assets/img/order2.jpg"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; b&#xe1;n h&#xe0;ng"/>
                   </Properties>
@@ -142,7 +142,7 @@
                 <Component class="javax.swing.JLabel" name="jlbSanPham">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/menu.png"/>
+                      <Image iconType="3" name="/assets/img/menu.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
@@ -180,7 +180,7 @@
                 <Component class="javax.swing.JLabel" name="jlbDonHangAdmin">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/order-delivery.png"/>
+                      <Image iconType="3" name="/assets/img/order-delivery.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n h&#xe0;ng"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -212,7 +212,7 @@
             <Component class="javax.swing.JButton" name="btnExit">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/log-out244.jpg"/>
+                  <Image iconType="3" name="/assets/img/log-out244.jpg"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -266,7 +266,7 @@
                 <Component class="javax.swing.JLabel" name="jlbKhachHang">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/khachhang.jpg"/>
+                      <Image iconType="3" name="/assets/img/khachhang.jpg"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Kh&#xe1;ch h&#xe0;ng"/>
                   </Properties>
@@ -300,7 +300,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Food20.jpg"/>
+              <Image iconType="3" name="/assets/img/Food20.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel4"/>
           </Properties>
