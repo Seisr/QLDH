@@ -71,16 +71,16 @@ public class KhachHangDAO {
 
     public static void update1(KhachHang kh) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
-            String sql = "UPDATE KHACHHANG SET TENDN=?, VAITRO=?, HOTEN=?, SODT=?, EMAIL=? OUTPUT Inserted.* WHERE MAKH=?";
+            String sql = "UPDATE KHACHHANG SET TENDN=?, VAITRO=?, HOTEN=?, MATKHAU=?, SODT=?, EMAIL=? OUTPUT Inserted.* WHERE MAKH=?";
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, kh.getTenDN());
             ps.setString(2, kh.getVaiTro());
             ps.setString(3, kh.getHoTen());
-            ps.setString(4, kh.getSoDT());
-            ps.setString(5, kh.getEmail());
-            ps.setString(6, String.valueOf(kh.getMaKH()));
+            ps.setString(4,kh.getMatKhau());
+            ps.setString(5, kh.getSoDT());
+            ps.setString(6, kh.getEmail());
+            ps.setString(7, String.valueOf(kh.getMaKH()));
             ps.executeQuery();
-//            return parse_obj(rs).get(0);
         }
     }
 
@@ -111,7 +111,6 @@ public class KhachHangDAO {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, Integer.toString(MAKH));
             ResultSet rs = ps.executeQuery();
-//            return parse_obj(rs).get(0);
         }
     }
 

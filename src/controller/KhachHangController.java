@@ -5,7 +5,6 @@
 package controller;
 
 import dao.KhachHangDAO;
-import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -38,12 +37,28 @@ public class KhachHangController {
             model1.addRow(row);
         }
     }
-        public void addKhachHang(KhachHang kh) {
+
+    public void addKhachHang(KhachHang kh) {
         try {
             KhachHangDAO.insert(kh);
             JOptionPane.showMessageDialog(null, "Thêm người dùng thành công");
-        } catch (HeadlessException | SQLException e) {
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void updateKhachHang(KhachHang kh) {
+        try {
+            KhachHangDAO.update1(kh);
+            JOptionPane.showMessageDialog(null, "Sửa người dùng thành công");
+        } catch (SQLException ex) {
+        }
+    }
+
+    public void deleteKhachHang(int maKH) {
+        try {
+            KhachHangDAO.delete(maKH);
+            JOptionPane.showMessageDialog(null, "Xóa người dùng thành công");
+        } catch (SQLException ex) {
         }
     }
 }
-

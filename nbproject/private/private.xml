@@ -3,8 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/LoginView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/DonHangController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/DonHangUserView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/HomeAdminView.java</file>
             <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/LoginController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/KhachHangView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/RegisterController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/GioHangView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/GioHangChiTietView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/KhachHangController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/SanPhamController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/SanPhamView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/DonHangUserController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/LoginView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/BarController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/controller/GioHangController.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/HomeView.java</file>
+            <file>file:/C:/Users/A715-42G/Documents/NetBeansProjects/QLDH/src/view/RegisterView.java</file>
         </group>
     </open-files>
 </project-private>

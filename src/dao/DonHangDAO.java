@@ -92,34 +92,7 @@ public class DonHangDAO {
             ResultSet rs = ps.executeQuery();
             return parse_obj(rs).get(0);
         }
-    }
-//    public static ArrayList<DonHang> selectAll() throws SQLException {
-//        try (Connection connection = JDBC.getConnection()) {
-//            String sql = "SELECT * FROM DONHANG WHERE 1=1";
-////            if (!loai.isBlank()) {
-////                sql += " AND LOAI='" + loai + "'";
-////            }
-//            PreparedStatement ps = connection.prepareCall(sql);
-//            ResultSet rs = ps.executeQuery();
-//            return parse_obj(rs);
-//        }
-//    }
-
-//    public static ResultSet selectAll() throws SQLException {
-////        JDBC db = new JDBC();
-//        try (Connection connection = JDBC.getConnection()) {
-//            String sql = "SELECT * FROM DONHANG";
-//            PreparedStatement ps = connection.prepareCall(sql);
-//            ResultSet rs = ps.executeQuery();
-////        ResultSet rs = db.executeQuery("SELECT * FROM SANPHAM");
-////        db.close();
-//            System.out.println(rs);
-//
-//            return rs;
-//        }
-//
-//    }
-    
+    }    
     public static ArrayList<DonHang> selectAll1() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG");

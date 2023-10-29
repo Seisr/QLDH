@@ -6,24 +6,28 @@ package view;
 
 import controller.DonHangUserController;
 import java.sql.SQLException;
+
 /**
  *
  * @author A715-42G
  */
 public class DonHangUserView extends javax.swing.JPanel {
+
+    DonHangUserController dhuAC = new DonHangUserController();
+
     /**
      * Creates new form DonHangView
      */
     public DonHangUserView() throws SQLException {
 
         initComponents();
-        DonHangUserController dhac = new DonHangUserController();
-        dhac.loadData(tblDonHang);
+        dhuAC.loadData(tblDonHang);
         tblDonHang.setRowHeight(90);
         tblDonHang.getColumnModel().getColumn(0).setPreferredWidth(20);
         tblDonHang.getColumnModel().getColumn(1).setPreferredWidth(40);
         tblDonHang.getColumnModel().getColumn(2).setPreferredWidth(250);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

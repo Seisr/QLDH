@@ -5,16 +5,12 @@
 package view;
 
 import controller.SanPhamController;
-import dao.GioHangDAO;
-import dao.SanPhamDAO;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import model.SanPham;
 
 /**
@@ -25,7 +21,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
     private int maKH = 0;
     private String vaiTro = "";
-    private SanPhamController spac = new SanPhamController();
+    private SanPhamController spAC = new SanPhamController();
 
     /**
      * Creates new form SanPhamView
@@ -41,7 +37,7 @@ public class SanPhamView extends javax.swing.JPanel {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        spac.loadData(tblSanPham, vaiTro,"","");
+        spAC.loadData(tblSanPham, vaiTro, "", "");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -56,7 +52,6 @@ public class SanPhamView extends javax.swing.JPanel {
                 btnThemGioHang.setEnabled(false);
                 txtSoluong.setEnabled(false);
                 btnXoa.setVisible(false);
-
             }
             case "user" -> {
                 btnSua.setVisible(false);
@@ -69,7 +64,6 @@ public class SanPhamView extends javax.swing.JPanel {
                 labelSoluong.setVisible(false);
                 txtSoluong.setVisible(false);
             }
-
         }
     }
 
@@ -269,7 +263,7 @@ public class SanPhamView extends javax.swing.JPanel {
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
 
-        spac.loadData(tblSanPham, vaiTro, "","");
+        spAC.loadData(tblSanPham, vaiTro, "", "");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -289,7 +283,7 @@ public class SanPhamView extends javax.swing.JPanel {
         String loai = txtLoai.getText();
 
         SanPham sp = new SanPham(maSP, tenSP, moTa, donGia, soLuongTonKho, hinhAnh, loai);
-        spac.addSanPham(sp);
+        spAC.addSanPham(sp);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -301,31 +295,17 @@ public class SanPhamView extends javax.swing.JPanel {
         int soLuongTonKho = Integer.parseInt(txtSoLuongTonKho.getText());
         String hinhAnh = txtHinhAnh.getText();
         String loai = txtLoai.getText();
-
+        
         SanPham sp = new SanPham(maSP, tenSP, moTa, donGia, soLuongTonKho, hinhAnh, loai);
-        try {
-            SanPhamDAO.update(sp);
-            JOptionPane.showMessageDialog(null, "Sửa Sản Phẩm thành công");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        spAC.editSanPham(sp);
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThemGioHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGioHangActionPerformed
-        try {
-            int qty = Integer.parseInt(txtSoluong.getText());
-            int maSP = Integer.parseInt(txtMaSP.getText());
-            Integer donGia = Integer.valueOf(txtDonGia.getText());
-            SanPham sp = SanPhamDAO.selectByMaSP(maSP);
-            if (sp.getSoLuongTonKho() - qty < 0) {
-                JOptionPane.showMessageDialog(null, "Vượt quá số lượng tồn kho! Không thể thêm sản phẩm vào giỏ hàng");
-                return;
-            }
-            GioHangDAO.insert(maKH, maSP, qty, donGia);
-            JOptionPane.showMessageDialog(null, "Đã thêm sản phẩm vào giỏ hàng");
-        } catch (SQLException ex) {
-            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int qty = Integer.parseInt(txtSoluong.getText());
+        int maSP = Integer.parseInt(txtMaSP.getText());
+        Integer donGia = Integer.valueOf(txtDonGia.getText());
+        
+        spAC.toCartSanPham(maSP,qty, donGia,maKH);
     }//GEN-LAST:event_btnThemGioHangActionPerformed
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
@@ -349,18 +329,12 @@ public class SanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        try {
-
-            SanPhamDAO.delete(Integer.parseInt(txtMaSP.getText()));
-            JOptionPane.showMessageDialog(null,"Đã xóa sản phẩm");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        int maSP = Integer.parseInt(txtMaSP.getText());
+        spAC.deleteSanPham(maSP);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnDrinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrinkActionPerformed
-        spac.loadData(tblSanPham, vaiTro,"Thức uống","");
+        spAC.loadData(tblSanPham, vaiTro, "Thức uống", "");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
@@ -370,34 +344,34 @@ public class SanPhamView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDrinkActionPerformed
 
     private void btnFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFoodActionPerformed
-        spac.loadData(tblSanPham, vaiTro,"Đồ ăn","");
+        spAC.loadData(tblSanPham, vaiTro, "Đồ ăn", "");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
         tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
         tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
-        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);        // TODO add your handling code here:
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);       
     }//GEN-LAST:event_btnFoodActionPerformed
 
     private void btnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllActionPerformed
-        spac.loadData(tblSanPham, vaiTro,"","");
+        spAC.loadData(tblSanPham, vaiTro, "", "");
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
         tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
         tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
-        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);  
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);
     }//GEN-LAST:event_btnAllActionPerformed
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         String filter = txtFilter.getText();
-        spac.loadData(tblSanPham, vaiTro,"",filter);
+        spAC.loadData(tblSanPham, vaiTro, "", filter);
         tblSanPham.setRowHeight(90);
         tblSanPham.getColumnModel().getColumn(0).setPreferredWidth(10);
         tblSanPham.getColumnModel().getColumn(1).setPreferredWidth(20);
         tblSanPham.getColumnModel().getColumn(3).setPreferredWidth(20);
         tblSanPham.getColumnModel().getColumn(4).setPreferredWidth(20);
-        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);  
+        tblSanPham.getColumnModel().getColumn(6).setPreferredWidth(20);
     }//GEN-LAST:event_btnFilterActionPerformed
 
 

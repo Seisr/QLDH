@@ -5,28 +5,26 @@
 package view;
 
 import controller.DonHangController;
-import dao.DonHangDAO;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.DonHang;
-import model.TrangThaiDH;
-import static model.TrangThaiDH.DANGXULY;
+
 /**
  *
  * @author A715-42G
  */
 public class DonHangView extends javax.swing.JPanel {
+
+    DonHangController dhAC = new DonHangController();
+
     /**
      * Creates new form DonHangView
      */
     public DonHangView() throws SQLException {
         initComponents();
-        DonHangController dhac = new DonHangController();
-        dhac.loadData(tblDonHang);
+        dhAC.loadData(tblDonHang);
         tblDonHang.setRowHeight(90);
         tblDonHang.getColumnModel().getColumn(3).setPreferredWidth(200);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,25 +93,7 @@ public class DonHangView extends javax.swing.JPanel {
     private void updateStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusBtnActionPerformed
 
         int[] list = tblDonHang.getSelectedRows();
-        for (int i : list) {
-            int maDH = Integer.parseInt(tblDonHang.getValueAt(i, 0).toString());
-            DonHang dh;
-            try {
-                dh = DonHangDAO.selectByMaDH(maDH);
-                switch (dh.getTrangThai()) {
-                    case DANGXULY ->
-                        DonHangDAO.updateTrangThai(maDH, TrangThaiDH.DANGGIAOHANG);
-                    case DANGGIAOHANG ->
-                        DonHangDAO.updateTrangThai(maDH, TrangThaiDH.DAHOANTHANH);
-                    default -> {
-                    }
-                }
-                DonHangController dhac = new DonHangController();
-                dhac.loadData(tblDonHang);
-            } catch (SQLException ex) {
-                Logger.getLogger(DonHangView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        dhAC.updateStatus(list, tblDonHang);
     }//GEN-LAST:event_updateStatusBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

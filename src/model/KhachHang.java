@@ -21,11 +21,9 @@ public class KhachHang {
     public KhachHang() {
     }
 
-//    hoTen,tenDN,pass,vaiTro,soDT,email
     public KhachHang(String tenDN, String hoten, String matKhau, String soDT, String email) {
         this.hoten = hoten;
         this.tenDN = tenDN;
-//        this.vaiTro = vaiTro;
         this.matKhau = matKhau;
         this.soDT = soDT;
         this.email = email;

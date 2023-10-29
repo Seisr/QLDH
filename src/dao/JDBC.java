@@ -22,10 +22,8 @@ public class JDBC {
 
     public JDBC() {
         try {
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
         } catch (SQLException e) {
-            //ClassNotFoundException |
                     }
     }
     

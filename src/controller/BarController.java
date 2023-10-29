@@ -69,7 +69,6 @@ public class BarController{
     class LabelEvent implements MouseListener {
 
         private JPanel node;
-
         private String type;
         private JPanel jpnI;
         private JLabel jlbI;
@@ -118,8 +117,6 @@ public class BarController{
                     }
                 }
                     break;
-
-
             }
             root.removeAll();
             root.setLayout(new BorderLayout());

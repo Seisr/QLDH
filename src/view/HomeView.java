@@ -35,7 +35,9 @@ public class HomeView extends javax.swing.JFrame {
         setTitle("Màn hình chính");
         ImageIcon img = new ImageIcon(this.getClass().getResource("/assets/img/burger.png"));
         this.setIconImage(img.getImage());
+        
         BarController barCon = new BarController(jpnView);
+        
         barCon.setView("SanPham", jpnSanPham, jlbSanPham);
         ArrayList<Bar> listItem = new ArrayList<>();
         listItem.add(new Bar("SanPham", jpnSanPham, jlbSanPham));
@@ -264,7 +266,6 @@ public class HomeView extends javax.swing.JFrame {
             lv.setVisible(true);
             setVisible(false);
         }
-
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**
@@ -283,23 +284,15 @@ public class HomeView extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new HomeView().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new HomeView().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(HomeView.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

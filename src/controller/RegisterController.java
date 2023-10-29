@@ -24,29 +24,7 @@ import view.LoginView;
  */
 public class RegisterController {
 
-    private final KhachHang model;
-    private final RegisterView view;
-    
-    private final String cMatKhau;
-    
-    private final JLabel jlbName;
-    private final JLabel jlbEmail;
-    private final JLabel jlbPhone;
-    private final JLabel jlbPass;
-    private final JLabel jlbCPass;
-
-    public RegisterController(KhachHang model, RegisterView view, String cMatKhau, JLabel jlbName, JLabel jlbEmail, JLabel jlbPhone, JLabel jlbPass, JLabel jlbCPass) {
-        this.model = model;
-        this.view = view;
-        this.cMatKhau = cMatKhau;
-        this.jlbName = jlbName;
-        this.jlbEmail = jlbEmail;
-        this.jlbPhone = jlbPhone;
-        this.jlbPass = jlbPass;
-        this.jlbCPass = jlbCPass;
-    }
-
-    public void register() {
+    public void register(KhachHang model, RegisterView view, String cMatKhau, JLabel jlbName, JLabel jlbEmail, JLabel jlbPhone, JLabel jlbPass, JLabel jlbCPass) {
 
         String regexEmail = "^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
         String regexPass = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,12}$";
@@ -74,7 +52,6 @@ public class RegisterController {
 
         boolean valid = valEmail && valPass && valPhone && valName && valCPass;
         System.out.println(valid);
-//        try {
         if (valName) {
             jlbName.setText("");
         } else {

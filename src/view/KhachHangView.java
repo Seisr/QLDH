@@ -5,9 +5,7 @@
 package view;
 
 import controller.KhachHangController;
-import dao.KhachHangDAO;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import model.KhachHang;
 
 /**
@@ -15,14 +13,14 @@ import model.KhachHang;
  * @author A715-42G
  */
 public class KhachHangView extends javax.swing.JPanel {
+    KhachHangController khAC = new KhachHangController();
 
     /**
      * Creates new form KhachHangView
      */
     public KhachHangView() throws SQLException {
         initComponents();
-        KhachHangController khac = new KhachHangController();
-        khac.loadData(tblKhachHang);
+        khAC.loadData(tblKhachHang);
         tblKhachHang.setRowHeight(90);
         tblKhachHang.getColumnModel().getColumn(4).setPreferredWidth(100);
         tblKhachHang.getColumnModel().getColumn(5).setPreferredWidth(100);
@@ -41,7 +39,7 @@ public class KhachHangView extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
-        updateStatusBtn = new javax.swing.JButton();
+        btnLoad = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
@@ -80,10 +78,10 @@ public class KhachHangView extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblKhachHang);
 
-        updateStatusBtn.setText("Tải lại");
-        updateStatusBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnLoad.setText("Tải lại");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateStatusBtnActionPerformed(evt);
+                btnLoadActionPerformed(evt);
             }
         });
 
@@ -131,7 +129,7 @@ public class KhachHangView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(updateStatusBtn)
+                        .addComponent(btnLoad)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnThem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,7 +197,7 @@ public class KhachHangView extends javax.swing.JPanel {
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateStatusBtn)
+                    .addComponent(btnLoad)
                     .addComponent(btnThem)
                     .addComponent(btnSua)
                     .addComponent(btnXoa))
@@ -216,9 +214,8 @@ public class KhachHangView extends javax.swing.JPanel {
         String soDT = txtSoDT.getText();
         String email = txtEmail.getText();
 
-        KhachHangController khac = new KhachHangController();
         KhachHang kh = new KhachHang(tenDN, hoTen, matKhau, vaiTro, soDT, email);
-        khac.addKhachHang(kh);
+        khAC.addKhachHang(kh);
 
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -233,22 +230,13 @@ public class KhachHangView extends javax.swing.JPanel {
         String email = txtEmail.getText();
 
         KhachHang kh = new KhachHang(maKH, tenDN, hoTen, matKhau, vaiTro, soDT, email);
-        try {
-            KhachHangDAO.update1(kh);
-            JOptionPane.showMessageDialog(null, "Sửa người dùng thành công");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        khAC.updateKhachHang(kh);
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
-        try {
-
-            KhachHangDAO.delete(Integer.parseInt(txtMaKH.getText()));
-            JOptionPane.showMessageDialog(null, "Xóa người dùng thành công");
-        } catch (SQLException ex) {
-        }
+        int maKH = Integer.parseInt(txtMaKH.getText());
+        khAC.deleteKhachHang(maKH);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
@@ -271,18 +259,18 @@ public class KhachHangView extends javax.swing.JPanel {
         txtEmail.setText(email);
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
-    private void updateStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStatusBtnActionPerformed
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
 
-        KhachHangController khac = new KhachHangController();
         try {
-            khac.loadData(tblKhachHang);
+            khAC.loadData(tblKhachHang);
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(KhachHangView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_updateStatusBtnActionPerformed
+    }//GEN-LAST:event_btnLoadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
@@ -303,7 +291,6 @@ public class KhachHangView extends javax.swing.JPanel {
     private javax.swing.JTextField txtSoDT;
     private javax.swing.JTextField txtTenDN;
     private javax.swing.JTextField txtVaiTro;
-    private javax.swing.JButton updateStatusBtn;
     // End of variables declaration//GEN-END:variables
 
 }

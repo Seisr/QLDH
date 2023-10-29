@@ -5,6 +5,7 @@
 package controller;
 
 import controller.GioHangController.myCellRenderer;
+import dao.DonHangDAO;
 import dao.GioHangDAO;
 import dao.SanPhamDAO;
 import java.awt.Component;
@@ -14,16 +15,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
+import model.DonHang;
 import model.GioHang;
 import model.SanPham;
 import view.GioHangChiTietView;
+import view.GioHangView;
 
 /**
  *
  * @author khoa5
  */
 public class GioHangController {
+
     public ArrayList<Integer> getMaDH(int maKH) {
         try {
             ArrayList<Integer> res = new ArrayList();
@@ -37,12 +42,11 @@ public class GioHangController {
         }
         return null;
     }
-    
+
     public Integer loadData(JList list, int maKH) {
-        ArrayList<GioHangChiTietView> res = new ArrayList<GioHangChiTietView>();
+        ArrayList<GioHangChiTietView> res = new ArrayList<>();
         // Thay đổi đường dẫn tương đối của máy tính bạn đến chương trình JAVA ở đây
         String path = "src\\";
-//        String path = "C:\\Users\\A715-42G\\Documents\\NetBeansProjects\\QLDH\\src\\";
         Integer total_ = 0;
         try {
             ArrayList<GioHang> list_gh = GioHangDAO.selectAll(maKH);
@@ -50,14 +54,11 @@ public class GioHangController {
                 int maSP = gh.getMaSP();
                 SanPham sp = SanPhamDAO.selectByMaSP(maSP);
                 String tenSP = sp.getTenSP();
-                String moTa = sp.getMoTa();
                 Integer donGia = sp.getDonGia();
-                Integer soLuongTonKho = sp.getSoLuongTonKho();
                 Integer total = donGia * gh.getSoLuong();
-                String loai = sp.getLoai();
                 String hinhAnh = sp.getHinhAnh();
                 GioHangChiTietView chitietPanel = new GioHangChiTietView();
-                String hinhAnh2 = path + hinhAnh; //+ ".jpg";
+                String hinhAnh2 = path + hinhAnh;
                 ImageIcon icon = new ImageIcon(hinhAnh2);
 
                 chitietPanel.imageLabel.setIcon(icon);
@@ -77,13 +78,29 @@ public class GioHangController {
         return 0;
     }
 
+    public void taoDonHang(DonHang dh, ArrayList<Integer> maGHs, int maKH, JList listgiohang) {
+        try {
+            DonHangDAO.insert(dh);
+            for (Integer maGH : maGHs) {
+                GioHangDAO.updateTrangThai(maKH, maGH, Boolean.TRUE);
+                GioHang gh = GioHangDAO.selectByMaGH(maGH);
+                SanPham sp = SanPhamDAO.selectByMaSP(gh.getMaSP());
+                SanPhamDAO.truTonKhoSP(gh.getMaSP(), gh.getSoLuong() < sp.getSoLuongTonKho() ? sp.getSoLuongTonKho() - gh.getSoLuong() : 0);
+            }
+            listgiohang.removeAll();
+            JOptionPane.showMessageDialog(null, "Tạo đơn hàng thành công");
+        } catch (SQLException ex) {
+            Logger.getLogger(GioHangView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     class myCellRenderer implements ListCellRenderer {
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             return (GioHangChiTietView) value;
-        };
+        }
+    ;
 
-
-    }
+}
 }

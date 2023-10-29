@@ -1,25 +1,18 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package view;
 
 import controller.GioHangController;
-import dao.DonHangDAO;
-import dao.GioHangDAO;
-import dao.SanPhamDAO;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import model.DonHang;
-import model.GioHang;
-import model.SanPham;
 import model.TrangThaiDH;
 
 /**
@@ -27,9 +20,10 @@ import model.TrangThaiDH;
  * @author A715-42G
  */
 public class GioHangView extends javax.swing.JPanel {
+
     private int maKH = 0;
     private String vaiTro = "";
-    private GioHangController ghac = new GioHangController();
+    private GioHangController ghAC = new GioHangController();
 
     /**
      * Creates new form GioHangView
@@ -44,7 +38,7 @@ public class GioHangView extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(SanPhamView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Integer total = ghac.loadData(listgiohang, maKH);
+        Integer total = ghAC.loadData(listGioHang, maKH);
         jlbTotal.setText(total.toString());
     }
 
@@ -59,7 +53,7 @@ public class GioHangView extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listgiohang = new javax.swing.JList<>();
+        listGioHang = new javax.swing.JList<>();
         txtDiaChi = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -70,7 +64,7 @@ public class GioHangView extends javax.swing.JPanel {
 
         jLabel1.setText("Giỏ hàng");
 
-        jScrollPane1.setViewportView(listgiohang);
+        jScrollPane1.setViewportView(listGioHang);
 
         jLabel2.setText("Địa chỉ");
 
@@ -139,27 +133,16 @@ public class GioHangView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTaoDonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoDonHangActionPerformed
-        try {
-            ArrayList<Integer> maGHs = ghac.getMaDH(maKH);
-            DonHang dh = new DonHang();
-            dh.setDiachi(txtDiaChi.getText());
-            dh.setMaGH(maGHs);
-            dh.setMaKH(maKH);
-            dh.setSdt(txtSoDT.getText());
-            dh.setTongTien(Integer.parseInt(jlbTotal.getText()));
-            dh.setTrangThai(TrangThaiDH.DANGXULY);
-            DonHangDAO.insert(dh);
-            for (Integer maGH : maGHs) {
-                GioHangDAO.updateTrangThai(maKH, maGH, Boolean.TRUE);
-                GioHang gh = GioHangDAO.selectByMaGH(maGH);
-                SanPham sp = SanPhamDAO.selectByMaSP(gh.getMaSP());
-                SanPhamDAO.truTonKhoSP(gh.getMaSP(), gh.getSoLuong() < sp.getSoLuongTonKho()? sp.getSoLuongTonKho() - gh.getSoLuong() : 0);
-            }
-            listgiohang.removeAll();
-            JOptionPane.showMessageDialog(null, "Tạo đơn hàng thành công");
-        } catch (SQLException ex) {
-            Logger.getLogger(GioHangView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ArrayList<Integer> maGHs = ghAC.getMaDH(maKH);
+        DonHang dh = new DonHang();
+        dh.setDiachi(txtDiaChi.getText());
+        dh.setMaGH(maGHs);
+        dh.setMaKH(maKH);
+        dh.setSdt(txtSoDT.getText());
+        dh.setTongTien(Integer.parseInt(jlbTotal.getText()));
+        dh.setTrangThai(TrangThaiDH.DANGXULY);
+
+        ghAC.taoDonHang(dh, maGHs, maKH, listGioHang);
     }//GEN-LAST:event_btnTaoDonHangActionPerformed
 
 
@@ -171,7 +154,7 @@ public class GioHangView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbTotal;
-    public javax.swing.JList<GioHangChiTietView> listgiohang;
+    public javax.swing.JList<GioHangChiTietView> listGioHang;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtSoDT;
     // End of variables declaration//GEN-END:variables

@@ -14,6 +14,8 @@ import model.KhachHang;
  */
 public class RegisterView extends javax.swing.JFrame {
 
+    RegisterController rAC = new RegisterController();
+
     /**
      * Creates new form RegisterView
      */
@@ -151,8 +153,8 @@ public class RegisterView extends javax.swing.JFrame {
         String matKhau = pasPass.getText();
         String cMatKhau = pasCPass.getText();
         KhachHang kh = new KhachHang(tenDN, tenKH, matKhau, soDT, email);
-        RegisterController rc = new RegisterController(kh, this, cMatKhau, jlbName, jlbEmail, jlbPhone, jlbPass, jlbCPass);
-        rc.register();
+
+        rAC.register(kh, this, cMatKhau, jlbName, jlbEmail, jlbPhone, jlbPass, jlbCPass);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
@@ -183,10 +185,8 @@ public class RegisterView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegisterView().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RegisterView().setVisible(true);
         });
     }
 

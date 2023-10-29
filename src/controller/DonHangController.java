@@ -7,8 +7,15 @@ package controller;
 import dao.DonHangDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.DonHang;
+import model.TrangThaiDH;
+import static model.TrangThaiDH.DANGGIAOHANG;
+import static model.TrangThaiDH.DANGXULY;
+import view.DonHangView;
 
 /**
  *
@@ -31,6 +38,28 @@ public class DonHangController {
             String tongTien = rs.getString("TONGTIEN");
             Object[] row = {maDH, maKH, Sdt, diaChi, trangThai, tongTien};
             model1.addRow(row);
+        }
+    }
+    
+    public void updateStatus(int[] list, JTable tblDonHang){
+            for (int i : list) {
+            int maDH = Integer.parseInt(tblDonHang.getValueAt(i, 0).toString());
+            DonHang dh;
+            try {
+                dh = DonHangDAO.selectByMaDH(maDH);
+                switch (dh.getTrangThai()) {
+                    case DANGXULY ->
+                        DonHangDAO.updateTrangThai(maDH, TrangThaiDH.DANGGIAOHANG);
+                    case DANGGIAOHANG ->
+                        DonHangDAO.updateTrangThai(maDH, TrangThaiDH.DAHOANTHANH);
+                    default -> {
+                    }
+                }
+                DonHangController dhac = new DonHangController();
+                dhac.loadData(tblDonHang);
+            } catch (SQLException ex) {
+                Logger.getLogger(DonHangView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
