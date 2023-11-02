@@ -70,17 +70,27 @@ public class SanPhamController {
 
     public void addSanPham(SanPham sp) {
         try {
-            SanPhamDAO.insert(sp);
-            JOptionPane.showMessageDialog(null, "Thêm Sản Phẩm thành công");
+            if (! sp.getTenSP().isBlank()){ 
+                SanPhamDAO.insert(sp);
+                JOptionPane.showMessageDialog(null, "Thêm Sản Phẩm thành công");
+            } else {
+            JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại");
+            }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Thêm sản phẩm thất bại");
         }
     }
 
     public void editSanPham(SanPham sp) {
         try {
+            if (! sp.getTenSP().isBlank()){
             SanPhamDAO.update(sp);
             JOptionPane.showMessageDialog(null, "Sửa Sản Phẩm thành công");
+            } else {
+            JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại");
+            }
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Sửa sản phẩm thất bại");
         }
     }
 

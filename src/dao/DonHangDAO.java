@@ -92,7 +92,8 @@ public class DonHangDAO {
             ResultSet rs = ps.executeQuery();
             return parse_obj(rs).get(0);
         }
-    }    
+    }
+
     public static ArrayList<DonHang> selectAll1() throws SQLException {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG");
@@ -116,13 +117,13 @@ public class DonHangDAO {
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG ");
         return rs;
     }
-    
+
     public static ResultSet selectByMaKH(int maKH) throws SQLException {
         JDBC db = new JDBC();
-        ResultSet rs = db.executeQuery("SELECT * FROM DONHANG WHERE MAKH="+maKH);
+        ResultSet rs = db.executeQuery("SELECT * FROM DONHANG WHERE MAKH=" + maKH);
         return rs;
     }
-    
+
     public static DonHang selectByMaDH(int MADH) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
             String sql = "SELECT * FROM DONHANG WHERE MADONHANG=?";
@@ -162,4 +163,74 @@ public class DonHangDAO {
             return parse_obj(rs);
         }
     }
+
+    public static String countDH() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT COUNT(MADONHANG) AS COUNTDH FROM DONHANG");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("COUNTDH");
+            return count;
+        }
+        return null;
+    }
+
+    public static String countDXL() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT COUNT(MADONHANG) AS CDXL FROM DONHANG WHERE TRANGTHAI = N'Đang xử lý';");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("CDXL");
+            return count;
+        }
+        return null;
+    }
+
+    public static String countDGH() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT COUNT(MADONHANG) AS CDGH FROM DONHANG WHERE TRANGTHAI = N'Đang giao hàng'");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("CDGH");
+            return count;
+        }
+        return null;
+    }
+
+    public static String countDHT() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT COUNT(MADONHANG) AS CDHT FROM DONHANG WHERE TRANGTHAI = N'Đã hoàn thành'");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("CDHT");
+            return count;
+        }
+        return null;
+
+    }
+
+    public static String getHoTenMaxTongTien() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT TOP 1 HOTEN, KHACHHANG.MAKH,COUNT(MADONHANG) AS COUNTDH FROM DONHANG JOIN KHACHHANG ON DONHANG.MAKH = KHACHHANG.MAKH GROUP BY KHACHHANG.MAKH,HOTEN ORDER BY COUNT(MADONHANG) DESC ");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("HOTEN");
+            return count;
+        }
+        return null;
+
+    }
+
+    public static String avgDH() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT AVG(TONGTIEN) AS AVGTT FROM DONHANG");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("AVGTT");
+            return count;
+        }
+        return null;
+
+    }
+
 }

@@ -15,23 +15,24 @@ import java.util.*;
  *
  * @author A715-42G
  */
-public class SanPhamDAO  {
-    private static ArrayList<SanPham> parse_obj (ResultSet rs) throws SQLException{
+public class SanPhamDAO {
+
+    private static ArrayList<SanPham> parse_obj(ResultSet rs) throws SQLException {
         ArrayList<SanPham> list_sp = new ArrayList();
         while (rs.next()) {
             list_sp.add(
-                new SanPham(
-                    Integer.valueOf(rs.getString("MASP")),
-                    rs.getString("TENSP"),
-                    rs.getString("MOTA"),
-                    Integer.valueOf(rs.getString("DONGIA")),
-                    Integer.parseInt(rs.getString("SLTONKHO")),
-                    rs.getString("HINHANH"),
-                    rs.getString("LOAI")
-                )
+                    new SanPham(
+                            Integer.valueOf(rs.getString("MASP")),
+                            rs.getString("TENSP"),
+                            rs.getString("MOTA"),
+                            Integer.valueOf(rs.getString("DONGIA")),
+                            Integer.parseInt(rs.getString("SLTONKHO")),
+                            rs.getString("HINHANH"),
+                            rs.getString("LOAI")
+                    )
             );
         }
-        return  list_sp;
+        return list_sp;
     }
 
     public static SanPham insert(SanPham sp) throws SQLException {
@@ -40,8 +41,8 @@ public class SanPhamDAO  {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, sp.getTenSP());
             ps.setString(2, sp.getMoTa());
-            ps.setInt(3,sp.getDonGia());
-            ps.setInt(4,sp.getSoLuongTonKho());
+            ps.setInt(3, sp.getDonGia());
+            ps.setInt(4, sp.getSoLuongTonKho());
             ps.setString(5, sp.getHinhAnh());
             ps.setString(6, sp.getLoai());
             ResultSet rs = ps.executeQuery();
@@ -55,8 +56,8 @@ public class SanPhamDAO  {
             PreparedStatement ps = connection.prepareCall(sql);
             ps.setString(1, sp.getTenSP());
             ps.setString(2, sp.getMoTa());
-            ps.setInt(3,sp.getDonGia());
-            ps.setInt(4,sp.getSoLuongTonKho());
+            ps.setInt(3, sp.getDonGia());
+            ps.setInt(4, sp.getSoLuongTonKho());
             ps.setString(5, sp.getHinhAnh());
             ps.setString(6, sp.getLoai());
             ps.setString(7, String.valueOf(sp.getMaSP()));
@@ -96,7 +97,7 @@ public class SanPhamDAO  {
             return parse_obj(rs).get(0);
         }
     }
-    
+
     public static void truTonKhoSP(int MASP, int soluongTonkho) throws SQLException {
         try (Connection connection = JDBC.getConnection()) {
             String sql = "UPDATE SANPHAM SET SLTONKHO = ? WHERE MASP=?";
@@ -105,5 +106,34 @@ public class SanPhamDAO  {
             ps.setInt(2, MASP);
             ps.executeUpdate();
         }
+    }
+
+    public static String selectSLTonKho(int maSP) throws SQLException {
+//        JDBC db = new JDBC();
+        Connection connection = JDBC.getConnection();
+        String sql = "SELECT SLTONKHO FROM SANPHAM WHERE MASP = ?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setInt(1, maSP);
+        ResultSet rs = ps.executeQuery();
+//        ResultSet rs = c.executeQuery(sql);
+
+        String SL;
+        while (rs.next()) {
+            SL = rs.getString("SLTONKHO");
+            return SL;
+        }
+        return null;
+    }
+
+    public static String tongSP() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT COUNT(MASP) AS TONGSP FROM SANPHAM");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("TONGSP");
+            return count;
+        }
+        return null;
+
     }
 }

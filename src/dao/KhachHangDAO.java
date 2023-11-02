@@ -76,7 +76,7 @@ public class KhachHangDAO {
             ps.setString(1, kh.getTenDN());
             ps.setString(2, kh.getVaiTro());
             ps.setString(3, kh.getHoTen());
-            ps.setString(4,kh.getMatKhau());
+            ps.setString(4, kh.getMatKhau());
             ps.setString(5, kh.getSoDT());
             ps.setString(6, kh.getEmail());
             ps.setString(7, String.valueOf(kh.getMaKH()));
@@ -118,8 +118,8 @@ public class KhachHangDAO {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM KHACHHANG");
         ArrayList<KhachHang> list_kh = new ArrayList<>();
-        KhachHang newkh = new KhachHang();
         while (rs.next()) {
+            KhachHang newkh = new KhachHang();
             newkh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
             newkh.setEmail(rs.getString("EMAIL"));
             newkh.setHoTen(rs.getString("HOTEN"));
@@ -158,4 +158,16 @@ public class KhachHangDAO {
         }
         return null;
     }
+
+    public static String countKH() throws SQLException {
+        JDBC db = new JDBC();
+        ResultSet rs = db.executeQuery("SELECT COUNT(MAKH) AS COUNTKH FROM KHACHHANG");
+        String count;
+        while (rs.next()) {
+            count = rs.getString("COUNTKH");
+            return count;
+        }
+        return null;
+    }
+
 }
