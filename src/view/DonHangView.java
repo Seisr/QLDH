@@ -38,6 +38,9 @@ public class DonHangView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDonHang = new javax.swing.JTable();
         updateStatusBtn = new javax.swing.JButton();
+        btnXuat = new javax.swing.JButton();
+        txtLuuFile = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("Đơn hàng");
 
@@ -61,6 +64,21 @@ public class DonHangView extends javax.swing.JPanel {
             }
         });
 
+        btnXuat.setText("Xuất");
+        btnXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatActionPerformed(evt);
+            }
+        });
+
+        txtLuuFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLuuFileActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Đường dẫn lưu file");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,11 +89,19 @@ public class DonHangView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(updateStatusBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateStatusBtn)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 92, Short.MAX_VALUE))))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtLuuFile, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnXuat)))
+                        .addGap(272, 272, 272))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 104, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,9 +110,14 @@ public class DonHangView extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(updateStatusBtn)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLuuFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXuat)
+                    .addComponent(updateStatusBtn))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -96,10 +127,22 @@ public class DonHangView extends javax.swing.JPanel {
         dhAC.updateStatus(list, tblDonHang);
     }//GEN-LAST:event_updateStatusBtnActionPerformed
 
+    private void btnXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatActionPerformed
+        // TODO add your handling code here:
+        dhAC.xuatDonHang(txtLuuFile.getText());
+    }//GEN-LAST:event_btnXuatActionPerformed
+
+    private void txtLuuFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLuuFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLuuFileActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnXuat;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDonHang;
+    private javax.swing.JTextField txtLuuFile;
     private javax.swing.JButton updateStatusBtn;
     // End of variables declaration//GEN-END:variables
 

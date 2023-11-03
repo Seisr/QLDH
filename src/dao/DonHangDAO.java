@@ -98,18 +98,25 @@ public class DonHangDAO {
         JDBC db = new JDBC();
         ResultSet rs = db.executeQuery("SELECT * FROM DONHANG");
         ArrayList<DonHang> list_dh = new ArrayList<>();
-        DonHang newdh = new DonHang();
         while (rs.next()) {
-            newdh.setMaDH(Integer.parseInt(rs.getString("MADONHANG")));
-            newdh.setMaKH(Integer.parseInt(rs.getString("MAKH")));
+            DonHang newdh = new DonHang();
+            newdh.setMaDH(Integer.valueOf(rs.getString("MADONHANG")));
+            newdh.setMaKH(Integer.valueOf(rs.getString("MAKH")));
             newdh.setSdt(rs.getString("SODT"));
             newdh.setDiachi(rs.getString("DIACHI"));
             newdh.setTongTien(Double.parseDouble(rs.getString("TONGTIEN")));
-
+            String a = rs.getString("TRANGTHAI");
+            switch (a) {
+                case ("Đang xử lý") ->
+                    newdh.setTrangThai(TrangThaiDH.DANGXULY);
+                case ("Đang giao hàng") ->
+                    newdh.setTrangThai(TrangThaiDH.DANGGIAOHANG);
+                default ->
+                    newdh.setTrangThai(TrangThaiDH.DAHOANTHANH);
+            }
             list_dh.add(newdh);
         }
         return list_dh;
-
     }
 
     public static ResultSet selectAll() throws SQLException {

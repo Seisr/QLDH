@@ -26,7 +26,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jpn1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jpnPieChart" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="105" pref="105" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -56,9 +56,9 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Component id="jpn2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jpnBarChart" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="132" max="32767" attributes="0"/>
+              <EmptySpace pref="131" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,7 +68,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jpn2" min="-2" max="-2" attributes="0"/>
+              <Component id="jpnBarChart" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -97,7 +97,7 @@
                           <Component id="maxKH" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jpn1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jpnPieChart" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
@@ -130,7 +130,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/assets/img/user24.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; KH &#x111;&#x103;ng k&#xfd;:"/>
+        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; Kh&#xe1;ch h&#xe0;ng &#x111;&#x103;ng k&#xfd;:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -138,7 +138,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/assets/img/check24.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; m&#x1eab;u SP &#x111;ang c&#xf3;:"/>
+        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; m&#x1eab;u S&#x1ea3;n ph&#x1ea9;m &#x111;ang c&#xf3;:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -146,10 +146,10 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/assets/img/checkout24.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; &#x111;&#x1a1;n h&#xe0;ng &#x111;&#xe3; &#x111;&#x1eb7;t:"/>
+        <Property name="text" type="java.lang.String" value="T&#x1ed5;ng s&#x1ed1; &#x110;&#x1a1;n h&#xe0;ng &#x111;&#xe3; &#x111;&#x1eb7;t:"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jpn1">
+    <Container class="javax.swing.JPanel" name="jpnPieChart">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -164,7 +164,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JPanel" name="jpn2">
+    <Container class="javax.swing.JPanel" name="jpnBarChart">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -184,7 +184,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/assets/img/price24.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Gi&#xe1; tr&#x1ecb; trung b&#xec;nh &#x111;&#x1a1;n h&#xe0;ng: "/>
+        <Property name="text" type="java.lang.String" value="Gi&#xe1; tr&#x1ecb; trung b&#xec;nh &#x110;&#x1a1;n h&#xe0;ng: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="avgDH">
@@ -197,7 +197,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/assets/img/best-customer-experience.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Kh&#xe1;ch h&#xe0;ng nhi&#x1ec1;u &#x111;&#x1a1;n h&#xe0;ng nh&#x1ea5;t:"/>
+        <Property name="text" type="java.lang.String" value="Kh&#xe1;ch h&#xe0;ng nhi&#x1ec1;u &#x110;&#x1a1;n h&#xe0;ng nh&#x1ea5;t:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="maxKH">

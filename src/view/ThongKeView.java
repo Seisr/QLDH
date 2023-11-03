@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ThongKeController;
 import dao.DonHangDAO;
 import dao.KhachHangDAO;
 import dao.SanPhamDAO;
@@ -31,44 +32,10 @@ public class ThongKeView extends javax.swing.JPanel {
      */
     public ThongKeView() throws SQLException {
         initComponents();
-        String a = KhachHangDAO.countKH();
-        String b = DonHangDAO.countDH();
-        int DXL = Integer.parseInt(DonHangDAO.countDXL());
-        int DGH = Integer.parseInt(DonHangDAO.countDGH());
-        int DHT = Integer.parseInt(DonHangDAO.countDHT());
-        DefaultPieDataset pieDataset = new DefaultPieDataset();
-        pieDataset.setValue("Đang xử lý", DXL);
-        pieDataset.setValue("Đang giao hàng", DGH);
-        pieDataset.setValue("Đã hoàn thành", DHT);
-        JFreeChart chart = ChartFactory.createPieChart("Thống kê tình trạng đơn hàng", pieDataset, true, true, true);
-        PiePlot P = (PiePlot) chart.getPlot();
-        ChartPanel cp = new ChartPanel(chart);
-        cp.setPreferredSize(new Dimension(415, 220));
-        jpn1.setLayout(new CardLayout());
-        jpn1.add(cp);
-
-        DefaultCategoryDataset barDS = new DefaultCategoryDataset();
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(1)), "SL tồn kho","Bánh mì kẹp");
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(2)), "SL tồn kho", "Dừa xiêm xanh");
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(3)), "SL tồn kho", "Dừa xiêm tắc");
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(4)), "SL tồn kho", "Dừa xiêm sen");
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(6)), "SL tồn kho", "Bánh mì que");
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(7)), "SL tồn kho", "Chà bông");
-        barDS.setValue(Integer.parseInt(SanPhamDAO.selectSLTonKho(8)), "SL tồn kho", "Bánh mì xíu mại");
-        JFreeChart barChart = ChartFactory.createBarChart("Thống kê số lượng tồn kho theo mặt hàng", "Sản phẩm", "SL tồn kho", barDS, PlotOrientation.VERTICAL, false, true, false);
-        CategoryPlot p1 = barChart.getCategoryPlot();
-        p1.setRangeGridlinePaint(Color.black);
-        ChartPanel cp1 = new ChartPanel(barChart);
-        cp1.setPreferredSize(new Dimension(830, 200));
-        jpn2.setLayout(new CardLayout());
-        jpn2.add(cp1);
-        totalKH.setText(a);
-        totalDH.setText(b);
-        maxKH.setText(DonHangDAO.getHoTenMaxTongTien());
-        avgDH.setText(DonHangDAO.avgDH());
-        totalSP.setText(SanPhamDAO.tongSP());
-
-
+        ThongKeController tkAC = new ThongKeController();
+        tkAC.addPieChart(jpnPieChart);
+        tkAC.addBarChart(jpnBarChart);
+        tkAC.addStat(totalKH, totalDH, maxKH, avgDH, totalSP);
     }
 
     /**
@@ -87,8 +54,8 @@ public class ThongKeView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jpn1 = new javax.swing.JPanel();
-        jpn2 = new javax.swing.JPanel();
+        jpnPieChart = new javax.swing.JPanel();
+        jpnBarChart = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         avgDH = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -103,43 +70,43 @@ public class ThongKeView extends javax.swing.JPanel {
         totalDH.setText("jLabel2");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/user24.png"))); // NOI18N
-        jLabel2.setText("Tổng số KH đăng ký:");
+        jLabel2.setText("Tổng số Khách hàng đăng ký:");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/check24.png"))); // NOI18N
-        jLabel3.setText("Tổng số mẫu SP đang có:");
+        jLabel3.setText("Tổng số mẫu Sản phẩm đang có:");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/checkout24.png"))); // NOI18N
-        jLabel4.setText("Tổng số đơn hàng đã đặt:");
+        jLabel4.setText("Tổng số Đơn hàng đã đặt:");
 
-        javax.swing.GroupLayout jpn1Layout = new javax.swing.GroupLayout(jpn1);
-        jpn1.setLayout(jpn1Layout);
-        jpn1Layout.setHorizontalGroup(
-            jpn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpnPieChartLayout = new javax.swing.GroupLayout(jpnPieChart);
+        jpnPieChart.setLayout(jpnPieChartLayout);
+        jpnPieChartLayout.setHorizontalGroup(
+            jpnPieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 125, Short.MAX_VALUE)
         );
-        jpn1Layout.setVerticalGroup(
-            jpn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpnPieChartLayout.setVerticalGroup(
+            jpnPieChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 122, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jpn2Layout = new javax.swing.GroupLayout(jpn2);
-        jpn2.setLayout(jpn2Layout);
-        jpn2Layout.setHorizontalGroup(
-            jpn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpnBarChartLayout = new javax.swing.GroupLayout(jpnBarChart);
+        jpnBarChart.setLayout(jpnBarChartLayout);
+        jpnBarChartLayout.setHorizontalGroup(
+            jpnBarChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 127, Short.MAX_VALUE)
         );
-        jpn2Layout.setVerticalGroup(
-            jpn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpnBarChartLayout.setVerticalGroup(
+            jpnBarChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 122, Short.MAX_VALUE)
         );
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/price24.png"))); // NOI18N
-        jLabel5.setText("Giá trị trung bình đơn hàng: ");
+        jLabel5.setText("Giá trị trung bình Đơn hàng: ");
 
         avgDH.setText("jLabel6");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/best-customer-experience.png"))); // NOI18N
-        jLabel7.setText("Khách hàng nhiều đơn hàng nhất:");
+        jLabel7.setText("Khách hàng nhiều Đơn hàng nhất:");
 
         maxKH.setText("jLabel8");
 
@@ -156,7 +123,7 @@ public class ThongKeView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jpn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jpnPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -179,8 +146,8 @@ public class ThongKeView extends javax.swing.JPanel {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(avgDH))))
-                    .addComponent(jpn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(132, Short.MAX_VALUE))
+                    .addComponent(jpnBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +155,7 @@ public class ThongKeView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jpn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpnBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -211,7 +178,7 @@ public class ThongKeView extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(maxKH)))
-                    .addComponent(jpn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpnPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -225,8 +192,8 @@ public class ThongKeView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jpn1;
-    private javax.swing.JPanel jpn2;
+    private javax.swing.JPanel jpnBarChart;
+    private javax.swing.JPanel jpnPieChart;
     private javax.swing.JLabel maxKH;
     private javax.swing.JLabel totalDH;
     private javax.swing.JLabel totalKH;
