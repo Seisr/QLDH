@@ -150,7 +150,7 @@ public class KhachHangView extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setText("Địa chỉ lưu file");
+        jLabel9.setText("Đường dẫn lưu file");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -129,7 +129,7 @@ public class HomeAdminView extends javax.swing.JFrame {
 
         jpnBar.add(jpnSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 80, 163, -1));
 
-        jlbDonHangAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/order-delivery24.png"))); // NOI18N
+        jlbDonHangAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/order-delivery.png"))); // NOI18N
         jlbDonHangAdmin.setText("Đơn hàng");
         jlbDonHangAdmin.setMaximumSize(new java.awt.Dimension(73, 16));
         jlbDonHangAdmin.setMinimumSize(new java.awt.Dimension(73, 16));
@@ -140,16 +140,16 @@ public class HomeAdminView extends javax.swing.JFrame {
         jpnDonHangAdminLayout.setHorizontalGroup(
             jpnDonHangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangAdminLayout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jlbDonHangAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(34, 34, 34))
         );
         jpnDonHangAdminLayout.setVerticalGroup(
             jpnDonHangAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnDonHangAdminLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+            .addGroup(jpnDonHangAdminLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
                 .addComponent(jlbDonHangAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jpnBar.add(jpnDonHangAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 240, 163, -1));
@@ -169,29 +169,29 @@ public class HomeAdminView extends javax.swing.JFrame {
         });
         jpnBar.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 476, -1, -1));
 
-        jlbKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/khachhang24.png"))); // NOI18N
+        jlbKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/khachhang.jpg"))); // NOI18N
         jlbKhachHang.setText("Khách hàng");
 
         javax.swing.GroupLayout jpnKhachHangLayout = new javax.swing.GroupLayout(jpnKhachHang);
         jpnKhachHang.setLayout(jpnKhachHangLayout);
         jpnKhachHangLayout.setHorizontalGroup(
             jpnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnKhachHangLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+            .addGroup(jpnKhachHangLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addComponent(jlbKhachHang)
-                .addGap(35, 35, 35))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jpnKhachHangLayout.setVerticalGroup(
             jpnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnKhachHangLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jlbKhachHang)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jpnBar.add(jpnKhachHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 160, 163, 74));
 
-        jlbThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/stats.png"))); // NOI18N
+        jlbThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/img/stats16.png"))); // NOI18N
         jlbThongKe.setText("Thống kê");
 
         javax.swing.GroupLayout jpnThongKeLayout = new javax.swing.GroupLayout(jpnThongKe);
@@ -199,16 +199,16 @@ public class HomeAdminView extends javax.swing.JFrame {
         jpnThongKeLayout.setHorizontalGroup(
             jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnThongKeLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(47, 47, 47)
                 .addComponent(jlbThongKe)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jpnThongKeLayout.setVerticalGroup(
             jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnThongKeLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(28, 28, 28)
                 .addComponent(jlbThongKe)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jpnBar.add(jpnThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 320, 163, 74));
